@@ -3,32 +3,35 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import Counter from '../components/Counter'
 import NavBar from '../components/NavBar'
+import Nav from '../components/Nav'
 import * as CounterActions from '../actions/counter'
+import * as NavActions from '../actions/nav'
 
 function mapStateToProps(state) {
   return {
-    counter: state.counter
+  	nav: state.nav
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(CounterActions, dispatch)
+	return {
+		actions: bindActionCreators(NavActions, dispatch)
+	}
 }
 
 class App extends Component {
 	render() {
-		const { counter } = this.props
+		const { nav, actions } = this.props
 		return (
 			<div> 
 				<NavBar />
-				<Counter counter={counter} />
 			</div>
 		)
 	}
 }
 
 App.propTypes = {
-	counter: PropTypes.number
+	actions: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
