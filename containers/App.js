@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar'
 import Nav from '../components/Nav'
 import * as CounterActions from '../actions/counter'
 import * as NavActions from '../actions/nav'
+const { updatePath } = require ('redux-simple-router');
 
 function mapStateToProps(state) {
   return {
@@ -15,23 +16,25 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(NavActions, dispatch)
+		actions: bindActionCreators(NavActions, dispatch),
+		updatePath: updatePath
 	}
 }
 
 class App extends Component {
 	render() {
-		const { nav, actions } = this.props
+		const { nav, actions, updatePath } = this.props
 		return (
 			<div> 
-				<NavBar />
+				<NavBar updatePath={updatePath} />
 			</div>
 		)
 	}
 }
 
 App.propTypes = {
-	actions: PropTypes.object.isRequired
+	actions: PropTypes.object.isRequired, 
+	updatePath: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

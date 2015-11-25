@@ -3,12 +3,21 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './containers/App'
 import configureStore from './store/configureStore'
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+const { Router, Route } = require('react-router');
+import getRoutes from './components/root';
+import {syncReduxAndRouter} from 'redux-simple-router';
 
 const store = configureStore()
+const history = createBrowserHistory()
+
+syncReduxAndRouter(history, store)
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={history}>
+      {getRoutes()}
+   	</Router>
   </Provider>,
   document.getElementById('root')
 )
