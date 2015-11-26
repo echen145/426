@@ -3,6 +3,7 @@ import {Route} from 'react-router';
 import Home from '../components/Home' 
 import Setting from '../components/Setting'
 import App from '../containers/App'
+import SimpleMap from '../components/SimpleMap'
 
 export default function getRoutes() {
   return (
