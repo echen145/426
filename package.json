@@ -1,7 +1,7 @@
 {
-  "name": "redux-counter-example",
-  "version": "0.0.0",
-  "description": "Redux counter example",
+  "name": "426",
+  "version": "0.0.1",
+  "description": "Web app for COMP 426",
   "scripts": {
     "start": "node server.js",
     "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register --require ./test/setup.js",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/rackt/redux.git"
+    "url": "https://github.com/dongy7/426.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rackt/redux/issues"
+    "url": "https://github.com/dongy7/426/issues"
   },
-  "homepage": "http://rackt.github.io/redux",
+  "homepage": "https://github.com/dongy7/426.git",
   "dependencies": {
     "history": "^1.13.1",
     "material-ui": "^0.13.4",
