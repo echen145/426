@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Counter from '../components/Counter'
 import NavBar from '../components/NavBar'
 import Nav from '../components/Nav'
+import SimpleMap from '../components/SimpleMap'
 import * as CounterActions from '../actions/counter'
 import * as NavActions from '../actions/nav'
 const { updatePath } = require ('redux-simple-router');
@@ -16,17 +17,17 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(NavActions, dispatch),
-		updatePath: updatePath
+		updatePath: bindActionCreators(updatePath, dispatch) 
 	}
 }
 
 class App extends Component {
 	render() {
-		const { nav, actions, updatePath } = this.props
+		const { updatePath } = this.props
 		return (
 			<div> 
 				<NavBar updatePath={updatePath} />
+				<SimpleMap />
 			</div>
 		)
 	}

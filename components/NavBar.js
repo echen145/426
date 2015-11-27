@@ -5,7 +5,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 injectTapEventPlugin();
 
-
 export default class NavBar extends Component {
 	constructor() {
 	    super();
@@ -15,7 +14,7 @@ export default class NavBar extends Component {
 
 	_handleLeftNavChange(e, selectedIndex, menuItem) {
 		console.log(menuItem.route)
-		this.props.updatePath(menuItem.route)
+		this.props.updatePath(menuItem.route, false)
 		this.refs.leftNav.toggle()
 	}
 

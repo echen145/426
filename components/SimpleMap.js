@@ -21,15 +21,16 @@ export default class SimpleMap extends Component {
           <div
             {...this.props}
             style={{
-              height: "100%",
+              width: "450px",
+              height: "450px"
             }}
           />
         }
         googleMapElement={
           <GoogleMap
             ref={(map) => console.log(map)}
-            defaultZoom={3}
-            defaultCenter={{lat: -25.363882, lng: 131.044922}}>
+            defaultZoom={15}
+            defaultCenter={{lat: 35.912031, lng: -79.051305}}>
           </GoogleMap>
         }
       />
