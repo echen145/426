@@ -9,11 +9,14 @@ export default class FundList extends Component {
     return (
       <List subheader="Funds">
         {this.props.funds.map((fund, index) =>
-          <ListItem
-            primaryText={fund.fundName}
-            secondaryText={<p>Goal: ${fund.fundAmount}</p>}
-            secondaryTextLines={1} 
-            key={index} />
+          <div>
+            <ListItem
+              primaryText={fund.fundName}
+              secondaryText={<p>Goal: ${fund.fundAmount}</p>}
+              secondaryTextLines={1} 
+              key={index} />
+             <ListDivider />
+          </div>
           )}
       </List>
     )
