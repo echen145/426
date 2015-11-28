@@ -27,6 +27,18 @@ export default class TextBox extends Component {
       <div className="textbox">
         <div>
           <TextField
+            ref="fundName"
+            floatingLabelText="Fund Name"
+            multiLine={true} 
+          />
+          <TextField
+            ref="fundAmount"
+            floatingLabelText="Fund Goal Amount"
+            multiLine={true} 
+          />
+        </div>
+        <div>
+          <TextField
             ref="startLat"
             floatingLabelText="Starting Location Latitude"
             multiLine={true} 
@@ -51,7 +63,7 @@ export default class TextBox extends Component {
         </div>
         <div>
           <RaisedButton 
-            label="Submit" 
+            label="Add Fund" 
             secondary={true} 
             onTouchTap={this.onSubmit}
           />
