@@ -5,20 +5,38 @@ import {default as React, Component} from "react"
 export default class TextBox extends Component {
   constructor(props, context) {
     super(props, context)
-    this.onSubmit = this.onSubmit.bind(this)
+    this._onDirectionSubmit = this._onDirectionSubmit.bind(this)
+    this._onFundSubmit = this._onFundSubmit.bind(this)
   }
 
-  onSubmit(e) {
+  _onDirectionSubmit(e) {
     const startLat = this.refs.startLat.getValue()
     const startLong = this.refs.startLong.getValue()
     const destLat = this.refs.destLat.getValue()
     const destLong = this.refs.destLong.getValue()
-    console.log(this.props.getDirection)
+    // console.log(this.props.getDirection)
     this.props.getDirection({
       startLat: startLat,
       startLong: startLong,
       destLat: destLat,
       destLong: destLong
+    })
+  }
+
+  _onFundSubmit(e) {
+    const startLat = this.refs.startLat.getValue()
+    const startLong = this.refs.startLong.getValue()
+    const destLat = this.refs.destLat.getValue()
+    const destLong = this.refs.destLong.getValue()
+    const fundName = this.refs.fundName.getValue()
+    const fundAmount = this.refs.fundAmount.getValue()
+    this.props.addFund({
+      startLat: startLat,
+      startLong: startLong,
+      destLat: destLat,
+      destLong: destLong,
+      fundName: fundName,
+      fundAmount: fundAmount
     })
   }
 
@@ -33,7 +51,7 @@ export default class TextBox extends Component {
           />
           <TextField
             ref="fundAmount"
-            floatingLabelText="Fund Goal Amount"
+            floatingLabelText="Fund Goal Amount ($)"
             multiLine={true} 
           />
         </div>
@@ -63,9 +81,14 @@ export default class TextBox extends Component {
         </div>
         <div>
           <RaisedButton 
+            label="Get Direction" 
+            secondary={true} 
+            onTouchTap={this._onDirectionSubmit}
+          />
+          <RaisedButton 
             label="Add Fund" 
             secondary={true} 
-            onTouchTap={this.onSubmit}
+            onTouchTap={this._onFundSubmit}
           />
         </div>
     </div>
