@@ -1,6 +1,6 @@
 import TextField from 'material-ui/lib/text-field'
 import RaisedButton from 'material-ui/lib/raised-button'
-import {default as React, Component} from "react";
+import {default as React, Component} from "react"
 
 export default class TextBox extends Component {
   constructor(props, context) {

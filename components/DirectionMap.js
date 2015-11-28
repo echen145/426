@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import {GoogleMap, DirectionsRenderer} from "react-google-maps";
+import {GoogleMap, DirectionsRenderer} from "react-google-maps"
 
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference

@@ -1,13 +1,13 @@
 import AppBar from 'material-ui/lib/app-bar'
 import React, { PropTypes, Component } from 'react'
 import LeftNav from 'material-ui/lib/left-nav'
-import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
-injectTapEventPlugin();
+injectTapEventPlugin()
 
 export default class NavBar extends Component {
 	constructor() {
-	    super();
+	    super()
 	    this._toggleNav = this._toggleNav.bind(this);
 	    this._handleLeftNavChange = this._handleLeftNavChange.bind(this)
 	}

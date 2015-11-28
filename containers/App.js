@@ -6,7 +6,7 @@ import SimpleMap from '../components/SimpleMap'
 import DirectionMap from '../components/DirectionMap'
 import TextBox from '../components/TextBox'
 import * as MapActions from '../actions/map'
-const { updatePath } = require ('redux-simple-router');
+const { updatePath } = require ('redux-simple-router')
 
 function mapStateToProps(state) {
   return {

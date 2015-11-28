@@ -1,6 +1,6 @@
-import {default as React, Component} from "react";
+import {default as React, Component} from "react"
 
-import {GoogleMapLoader, GoogleMap} from "react-google-maps";
+import {GoogleMapLoader, GoogleMap} from "react-google-maps"
 /*
  * Sample From: https://developers.google.com/maps/documentation/javascript/examples/map-simple
  *
@@ -35,6 +35,6 @@ export default class SimpleMap extends Component {
         }
       />
       </div>
-    );
+    )
   }
 }
