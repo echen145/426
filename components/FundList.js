@@ -4,6 +4,14 @@ import ListItem from 'material-ui/lib/lists/list-item'
 import React, {Component} from 'react'
 
 export default class FundList extends Component {
+  constructor() {
+    super()
+  }
+
+  _onClick(index) {
+    this.props.updatePath('/fund/'+index)
+  } 
+
   render() {
     // console.log(this.props)
     return (
@@ -14,7 +22,8 @@ export default class FundList extends Component {
               primaryText={fund.fundName}
               secondaryText={<p>Goal: ${fund.fundAmount}</p>}
               secondaryTextLines={1} 
-              key={index} />
+              key={index}
+              onTouchTap={this._onClick.bind(this, index)} />
              <ListDivider />
           </div>
           )}

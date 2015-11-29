@@ -36,7 +36,8 @@ export default class TextBox extends Component {
       destLat: destLat,
       destLong: destLong,
       fundName: fundName,
-      fundAmount: fundAmount
+      fundAmount: fundAmount,
+      fundRaised: 0
     })
   }
 
