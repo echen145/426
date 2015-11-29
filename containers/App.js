@@ -28,13 +28,14 @@ function mapDispatchToProps(dispatch) {
 class App extends Component {
 	render() {
 		const { map, fund, updatePath, actions, fundActions } = this.props
-		// console.log(this.props)
+		console.log(this.props)
 		return (
 			<div> 
 				<NavBar updatePath={updatePath} />
-				<DirectionMap map={map} />
-				<TextBox getDirection={actions.getDirection} addFund={fundActions.addFund} />
-				<FundList funds={fund} />
+				<div className="container">
+					{this.props.children && React.cloneElement(this.props.children, 
+						{map: this.props.map, fund: this.props.fund, actions: this.props.actions, fundActions: this.props.fundActions})}
+				</div>
 			</div>
 		)
 	}

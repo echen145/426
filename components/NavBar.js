@@ -27,8 +27,9 @@ export default class NavBar extends Component {
 
 	render() {
 		const menuItems = [
-		  { key: 0, route: '/home', text: 'Home' },
-		  { key: 1, route: '/settings', text: 'Settings' }
+			{ key: 0, route: '/', text: 'Home' },
+		  { key: 1, route: '/funds', text: 'Funds' },
+		  { key: 2, route: '/settings', text: 'Settings' }
 		]
 
 		return (

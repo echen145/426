@@ -1,16 +1,19 @@
 import React from 'react'
-import {Route} from 'react-router'
+import {Route, IndexRoute} from 'react-router'
 import Home from '../components/Home' 
 import Setting from '../components/Setting'
 import App from '../containers/App'
 import NotFound from '../components/NotFound'
+import MainScreen from '../containers/MainScreen'
+import FundList from '../components/FundList'
 
 
 export default function getRoutes() {
   return (
     <Route path="/" component={App}>
-      <Route path="home" component={Home} />
-      <Route path="setting" component={Setting} />
+      <IndexRoute component={MainScreen} />
+      <Route path="funds" component={FundList} />
+      <Route path="settings" component={Setting} />
       <Route path="*" component={NotFound} status={404} />
     </Route>
   )

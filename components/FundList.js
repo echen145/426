@@ -8,7 +8,7 @@ export default class FundList extends Component {
     // console.log(this.props)
     return (
       <List subheader="Funds">
-        {this.props.funds.map((fund, index) =>
+        {this.props.fund.map((fund, index) =>
           <div>
             <ListItem
               primaryText={fund.fundName}
