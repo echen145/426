@@ -8,7 +8,7 @@ import TextBox from '../components/TextBox'
 import FundList from '../components/FundList'
 import * as MapActions from '../actions/map'
 import * as FundActions from '../actions/fund'
-const { updatePath } = require ('redux-simple-router')
+import { updatePath } from 'redux-simple-router'
 
 function mapStateToProps(state) {
   return {

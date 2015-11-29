@@ -12,11 +12,11 @@ export default class FundMap extends Component {
       destination: new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong),
       directions: null,
     }
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   componentDidMount() {
-    console.log('mounting')
+    // console.log('mounting')
     const DirectionsService = new google.maps.DirectionsService()
     DirectionsService.route({
       origin: this.state.origin,
@@ -33,7 +33,6 @@ export default class FundMap extends Component {
       }
     })
   }
-
 
   render () {
     const {origin, directions} = this.state;

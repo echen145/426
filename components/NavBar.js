@@ -13,15 +13,15 @@ export default class NavBar extends Component {
 	}
 
 	_handleLeftNavChange(e, selectedIndex, menuItem) {
-		console.log(menuItem.route)
+		// console.log(menuItem.route)
 		this.props.updatePath(menuItem.route, false)
 		this.refs.leftNav.toggle()
 	}
 
 	_toggleNav(e) {
 		e.preventDefault()
-		console.log("toggle")
-		console.log(this.refs)
+		// console.log("toggle")
+		// console.log(this.refs)
 		this.refs.leftNav.toggle()
 	}
 

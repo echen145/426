@@ -7,7 +7,7 @@ import {GoogleMap, DirectionsRenderer} from "react-google-maps"
 export default class DirectionMap extends Component {
   constructor(props, context) {
     super(props, context)
-    console.log(this.props)
+    // console.log(this.props)
     this.state = {
       directions: null,
     }
