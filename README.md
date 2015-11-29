@@ -7,3 +7,6 @@ npm install
 npm start
 ```
 Go to http://localhost:3000/
+
+## App Architecture
+This application is built using [Redux](http://redux.js.org/) as the [Flux](https://facebook.github.io/flux/) implementation and [React](http://facebook.github.io/react/) for the UI. 
