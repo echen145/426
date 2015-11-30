@@ -1,5 +1,12 @@
 import React, { PropTypes, Component } from 'react'
-import { LeftNav, AppBar, FlatButton } from 'material-ui'
+import { 
+	LeftNav, 
+	AppBar, 
+	FlatButton, 
+	IconMenu, 
+	IconButton, 
+	MoreVertIcon,
+	MenuItem } from 'material-ui'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
@@ -11,6 +18,7 @@ export default class NavBar extends Component {
 	    this._toggleNav = this._toggleNav.bind(this);
 	    this._handleLeftNavChange = this._handleLeftNavChange.bind(this)
 	    this._handleSignOut = this._handleSignOut.bind(this)
+	    this._handleIconMenuChange = this._handleIconMenuChange.bind(this)
 	}
 
 	_handleLeftNavChange(e, selectedIndex, menuItem) {
@@ -19,9 +27,9 @@ export default class NavBar extends Component {
 		this.refs.leftNav.toggle()
 	}
 
-	_handleSignOut(e) {
-		e.preventDefault()
-		console.log(this.props.loginActions)
+	_handleSignOut() {
+		// e.preventDefault()
+		// console.log(this.props.loginActions)
 		localStorage.removeItem('userToken')
 		this.props.loginActions.logout()
 		this.props.updatePath('/')
@@ -34,6 +42,12 @@ export default class NavBar extends Component {
 		this.refs.leftNav.toggle()
 	}
 
+	_handleIconMenuChange(e, val) {
+		if (val == 1) {
+			this._handleSignOut()
+		}
+	}
+
 	render() {
 		const menuItems = [
 			{ key: 0, route: '/', text: 'Home' },
@@ -41,14 +55,19 @@ export default class NavBar extends Component {
 		  { key: 2, route: '/settings', text: 'Settings' }
 		]
 
+		let button = (
+			<FlatButton 
+				label="Sign Out"
+				onTouchTap={this._handleSignOut} />
+		)
+
 		return (
 			<div className="nav">
 				<AppBar
 					title="App"
 					iconClassNameRight="muidocs-icon-navigation-expand-more" 
-					iconElementRight={<FlatButton label="Sign Out" />}
-					onLeftIconButtonTouchTap={this._handleSignOut} 
-					onRightIconButtonTouchTap={this._toggleNav}
+					onLeftIconButtonTouchTap={this._toggleNav} 
+          iconElementRight={button}
 				/>
 				<LeftNav 
 			        ref="leftNav" 
