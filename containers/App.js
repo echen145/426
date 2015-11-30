@@ -34,8 +34,10 @@ class App extends Component {
 				<NavBar updatePath={updatePath} />
 				<div className="container">
 					{this.props.children && React.cloneElement(this.props.children, 
-						{ map: this.props.map, fund: this.props.fund, 
-							actions: this.props.actions, fundActions: this.props.fundActions,
+						{ map: this.props.map, 
+							fund: this.props.fund, 
+							actions: this.props.actions, 
+							fundActions: this.props.fundActions,
 							updatePath: this.props.updatePath })}
 				</div>
 			</div>

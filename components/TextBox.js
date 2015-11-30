@@ -95,6 +95,8 @@ export default class TextBox extends Component {
         fundAmount: fundAmount,
         fundRaised: 0
       })
+      // console.log(this.props)
+      this.props.updatePath('/funds')
     } else {
       this._handleStandardDialogTouchTap()
     }

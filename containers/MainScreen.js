@@ -14,7 +14,10 @@ export default class MainScreen extends Component {
     return (
       <div style={styles.main} > 
         <DirectionMap map={this.props.map} />
-        <TextBox getDirection={this.props.actions.getDirection} addFund={this.props.fundActions.addFund} />
+        <TextBox 
+          updatePath={this.props.updatePath} 
+          getDirection={this.props.actions.getDirection} 
+          addFund={this.props.fundActions.addFund} />
       </div>
     )
   }
