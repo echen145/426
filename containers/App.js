@@ -28,7 +28,7 @@ function mapDispatchToProps(dispatch) {
 class App extends Component {
 	render() {
 		const { map, fund, updatePath, actions, fundActions } = this.props
-		console.log(this.props)
+		// console.log(this.props)
 		return (
 			<div> 
 				<NavBar updatePath={updatePath} />

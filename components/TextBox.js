@@ -1,8 +1,12 @@
 import TextField from 'material-ui/lib/text-field'
 import RaisedButton from 'material-ui/lib/raised-button'
+import {ClearFix, Mixins} from 'material-ui'
 import {default as React, Component} from "react"
+const {StyleResizable} = Mixins
 
 export default class TextBox extends Component {
+  mixins: [StyleResizable]
+
   constructor(props, context) {
     super(props, context)
     this._onDirectionSubmit = this._onDirectionSubmit.bind(this)
@@ -15,6 +19,26 @@ export default class TextBox extends Component {
       startLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)',      
       destLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)'
     }
+  }
+
+  getStyles() {
+    let styles = {
+      group: {
+        width: '100%',
+        marginBottom: 32
+      },
+      textfield: {
+        marginTop: 12
+      },
+      errorStyle: {
+        float: 'left'
+      },
+      buttons: {
+        marginTop: 24
+      }
+    }
+
+    return styles
   }
 
   _onDirectionSubmit(e) {
@@ -95,15 +119,18 @@ export default class TextBox extends Component {
   }
 
   render() {
+    let styles = this.getStyles()
     return (
-      <div className="textbox">
-        <div>
+      <div>
+        <ClearFix>
           <TextField
             ref="fundName"
             floatingLabelText="Fund Name"
             errorText={this.state.errorText}
             onChange={this._handleErrorInputChange.bind(this)}
             multiLine={true} 
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
           />
           <TextField
             ref="fundAmount"
@@ -111,15 +138,17 @@ export default class TextBox extends Component {
             errorText={this.state.errorText2}
             onChange={this._handleNumericErrorInputChange.bind(this)}
             multiLine={true} 
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
           />
-        </div>
-        <div>
           <TextField
             ref="startLat"
             floatingLabelText="Starting Location Latitude"
             errorText={this.state.startLatitudeErrText}
             onChange={this._handleLatitudeErrorInputChange.bind(this, 0)}
             multiLine={true} 
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
           />
           <TextField
             ref="startLong"
@@ -127,15 +156,17 @@ export default class TextBox extends Component {
             errorText={this.state.startLongitudeErrText}
             onChange={this._handleLongitudeErrorInputChange.bind(this, 0)}
             multiLine={true} 
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
           />
-        </div>
-        <div>
           <TextField
             ref="destLat"
             floatingLabelText="Destination Location Latitude"
             errorText={this.state.destLatitudeErrText}
             onChange={this._handleLatitudeErrorInputChange.bind(this, 1)}
             multiLine={true} 
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
           />
           <TextField
             ref="destLong"
@@ -143,9 +174,11 @@ export default class TextBox extends Component {
             errorText={this.state.destLongitudeErrText}
             onChange={this._handleLongitudeErrorInputChange.bind(this, 1)}  
             multiLine={true} 
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
           />
-        </div>
-        <div>
+      </ClearFix>
+        <div style={styles.buttons} >
           <RaisedButton 
             label="Get Direction" 
             secondary={true} 
@@ -157,7 +190,7 @@ export default class TextBox extends Component {
             onTouchTap={this._onFundSubmit}
           />
         </div>
-    </div>
+      </div>
     )
   }
 }
