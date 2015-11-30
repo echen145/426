@@ -1,12 +1,12 @@
 import React from 'react'
-import {Route, IndexRoute} from 'react-router'
+import { Route, IndexRoute } from 'react-router'
 import Home from '../components/Home' 
 import Setting from '../components/Setting'
-import App from '../containers/App'
 import NotFound from '../components/NotFound'
-import MainScreen from '../containers/MainScreen'
 import FundList from '../components/FundList'
 import FundScreen from '../containers/FundScreen'
+import App from '../containers/App'
+import MainScreen from '../containers/MainScreen'
 
 export default function getRoutes() {
   return (

@@ -13,27 +13,7 @@ export default class DirectionMap extends Component {
     }
   }
 
-  componentDidMount() {
-    const origin =  new google.maps.LatLng(this.props.map.startLat, this.props.map.startLong)
-    const destination =  new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong)
-    const DirectionsService = new google.maps.DirectionsService()
-    DirectionsService.route({
-      origin: origin,
-      destination: destination,
-      travelMode: google.maps.TravelMode.DRIVING
-    }, (result, status) => {
-      if(status == google.maps.DirectionsStatus.OK) {
-        this.setState({
-          directions: result
-        })
-      }
-      else {
-        console.error(`error fetching directions ${ result }`);
-      }
-    })
-  }
-
-  componentWillUpdate() {
+  _getDirection() {
     const origin =  new google.maps.LatLng(this.props.map.startLat, this.props.map.startLong)
     const destination =  new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong)
     const DirectionsService = new google.maps.DirectionsService()
@@ -54,6 +34,13 @@ export default class DirectionMap extends Component {
     })
   }
 
+  componentDidMount() {
+    this._getDirection()
+  }
+
+  componentWillUpdate() {
+    this._getDirection()
+  }
 
   render () {
     const {origin, directions} = this.state;
