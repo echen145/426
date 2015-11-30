@@ -1,6 +1,4 @@
-import TextField from 'material-ui/lib/text-field'
-import RaisedButton from 'material-ui/lib/raised-button'
-import {ClearFix, Mixins} from 'material-ui'
+import {ClearFix, Mixins, TextField, RaisedButton, Dialog} from 'material-ui'
 import {default as React, Component} from "react"
 const {StyleResizable} = Mixins
 
@@ -11,7 +9,11 @@ export default class TextBox extends Component {
     super(props, context)
     this._onDirectionSubmit = this._onDirectionSubmit.bind(this)
     this._onFundSubmit = this._onFundSubmit.bind(this)
+    this._handleStandardDialogTouchTap = this._handleStandardDialogTouchTap.bind(this)
+    this._handleRequestClose = this._handleRequestClose.bind(this)
     this.state ={
+      modal: false,
+      openDialogStandardActions: false,
       errorText: 'This field is required.',
       errorText2: 'This field must be numeric',
       startLatitudeErrText: 'This field must be a valid latitude (between -90 and 90)',
@@ -41,6 +43,21 @@ export default class TextBox extends Component {
     return styles
   }
 
+  _handleStandardDialogTouchTap() {
+    this.setState({
+      openDialogStandardActions: true,
+    });
+  }
+
+  _handleRequestClose(buttonClicked) {
+    if (!buttonClicked && this.state.modal) return;
+    this.setState({
+      openDialogStandardActions: false,
+      openDialogCustomActions: false,
+      openDialogScrollable: false,
+    });
+  }
+
   _onDirectionSubmit(e) {
     const startLat = this.refs.startLat.getValue()
     const startLong = this.refs.startLong.getValue()
@@ -62,15 +79,47 @@ export default class TextBox extends Component {
     const destLong = this.refs.destLong.getValue()
     const fundName = this.refs.fundName.getValue()
     const fundAmount = this.refs.fundAmount.getValue()
-    this.props.addFund({
-      startLat: startLat,
-      startLong: startLong,
-      destLat: destLat,
-      destLong: destLong,
-      fundName: fundName,
-      fundAmount: fundAmount,
-      fundRaised: 0
-    })
+
+    if(this._validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount)) {
+      this.props.addFund({
+        startLat: startLat,
+        startLong: startLong,
+        destLat: destLat,
+        destLong: destLong,
+        fundName: fundName,
+        fundAmount: fundAmount,
+        fundRaised: 0
+      })
+    } else {
+      this._handleStandardDialogTouchTap()
+    }
+  }
+
+  _validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount) {
+    return (
+      this._validateLat(startLat) &&
+      this._validateLat(destLat) &&
+      this._validateLong(startLong) &&
+      this._validateLong(destLong) &&
+      this._validateName(fundName) &&
+      this._validateNum(fundAmount)
+    )
+  }
+
+  _validateLat(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value) && (value >= -90 && value <= 90)
+  }
+
+  _validateLong(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value) && (value >= -180 && value <= 180)
+  }
+
+  _validateName(value) {
+    return value
+  }
+
+  _validateNum(value) {
+    return !isNaN(parseFloat(value)) && isFinite(value)
   }
 
   _handleErrorInputChange(e) {
@@ -120,8 +169,21 @@ export default class TextBox extends Component {
 
   render() {
     let styles = this.getStyles()
+    let standardActions = [
+      {text: 'Ok', ref: 'ok'},
+    ]
     return (
       <div>
+        <Dialog
+          ref="standardDialog"
+          title="Message"
+          actions={standardActions}
+          actionFocus="ok"
+          modal={this.state.modal}
+          open={this.state.openDialogStandardActions}
+          onRequestClose={this._handleRequestClose}>
+          Please enter valid inputs.
+        </Dialog>
         <ClearFix>
           <TextField
             ref="fundName"
