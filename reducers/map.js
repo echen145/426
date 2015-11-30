@@ -1,10 +1,10 @@
 import { GET_DIRECTION } from '../actions/map'
 
 const initialState = {
-  startLat: 41.8507300,
-  startLong: -87.6512600,
-  destLat: 41.8525800,
-  destLong: -87.6514100
+  startLat: 35.912875,
+  startLong: -79.053198,
+  destLat: 35.779094,
+  destLong: -78.643692
 }
 
 export default function map(state = initialState, action) {

@@ -5,9 +5,14 @@ import FundList from '../components/FundList'
 
 export default class MainScreen extends Component {
   render() {
-    console.log(this.props)
+    // console.log(this.props)
+    let styles = {
+      main: {
+        marginLeft: 10
+      }
+    }
     return (
-      <div> 
+      <div style={styles.main} > 
         <DirectionMap map={this.props.map} />
         <TextBox getDirection={this.props.actions.getDirection} addFund={this.props.fundActions.addFund} />
       </div>
