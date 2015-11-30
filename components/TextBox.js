@@ -64,12 +64,17 @@ export default class TextBox extends Component {
     const destLat = this.refs.destLat.getValue()
     const destLong = this.refs.destLong.getValue()
     // console.log(this.props.getDirection)
-    this.props.getDirection({
-      startLat: startLat,
-      startLong: startLong,
-      destLat: destLat,
-      destLong: destLong
-    })
+
+    if(this._validateDirection(startLat, startLong, destLat, destLong)) {
+      this.props.getDirection({
+        startLat: startLat,
+        startLong: startLong,
+        destLat: destLat,
+        destLong: destLong
+      })      
+    } else {
+      this._handleStandardDialogTouchTap()
+    }
   }
 
   _onFundSubmit(e) {
@@ -103,6 +108,15 @@ export default class TextBox extends Component {
       this._validateLong(destLong) &&
       this._validateName(fundName) &&
       this._validateNum(fundAmount)
+    )
+  }
+
+  _validateDirection(startLat, startLong, destLat, destLong) {
+    return (
+      this._validateLat(startLat) &&
+      this._validateLat(destLat) &&
+      this._validateLong(startLong) &&
+      this._validateLong(destLong)
     )
   }
 
