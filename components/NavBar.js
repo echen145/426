@@ -1,6 +1,6 @@
-import AppBar from 'material-ui/lib/app-bar'
 import React, { PropTypes, Component } from 'react'
-import LeftNav from 'material-ui/lib/left-nav'
+import { LeftNav, AppBar, FlatButton } from 'material-ui'
+
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 injectTapEventPlugin()
@@ -10,12 +10,21 @@ export default class NavBar extends Component {
 	    super()
 	    this._toggleNav = this._toggleNav.bind(this);
 	    this._handleLeftNavChange = this._handleLeftNavChange.bind(this)
+	    this._handleSignOut = this._handleSignOut.bind(this)
 	}
 
 	_handleLeftNavChange(e, selectedIndex, menuItem) {
 		// console.log(menuItem.route)
 		this.props.updatePath(menuItem.route, false)
 		this.refs.leftNav.toggle()
+	}
+
+	_handleSignOut(e) {
+		e.preventDefault()
+		console.log(this.props.loginActions)
+		localStorage.removeItem('userToken')
+		this.props.loginActions.logout()
+		this.props.updatePath('/')
 	}
 
 	_toggleNav(e) {
@@ -37,7 +46,9 @@ export default class NavBar extends Component {
 				<AppBar
 					title="App"
 					iconClassNameRight="muidocs-icon-navigation-expand-more" 
-					onLeftIconButtonTouchTap={this._toggleNav} 
+					iconElementRight={<FlatButton label="Sign Out" />}
+					onLeftIconButtonTouchTap={this._handleSignOut} 
+					onRightIconButtonTouchTap={this._toggleNav}
 				/>
 				<LeftNav 
 			        ref="leftNav" 
