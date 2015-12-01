@@ -74,7 +74,7 @@ class App extends Component {
 			app = (
 				<div> 
 					<NavBar updatePath={updatePath} loginActions={loginActions} />
-					<div className="container">
+					<div className="scren">
 						{this.props.children && React.cloneElement(this.props.children, 
 							{ 
 								map: this.props.map, 

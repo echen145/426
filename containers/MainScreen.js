@@ -8,7 +8,8 @@ export default class MainScreen extends Component {
     // console.log(this.props)
     let styles = {
       main: {
-        marginLeft: 10
+        marginLeft: 10,
+        marginTop: 10
       }
     }
     return (
