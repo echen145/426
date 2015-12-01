@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import SelectField from 'material-ui/lib/select-field'
+import { SelectField, Toggle } from 'material-ui'
 
 const arbitraryArrayMenuItems = [
   {id:1, name:'Option 1'},
@@ -33,17 +33,18 @@ class Setting extends Component {
     this.setState(change);
   }
 
+  _handleThemeToggle() {
+    this.props.settingsActions.toggleTheme() 
+  }
+
   render() {
     return (
       <div className="settings">
-        <SelectField
-          floatingLabelText="Setting 1"
-          style={styles.textfield}
-          value={this.state.selectValue1}
-          valueMember="id"
-          displayMember="name"
-          onChange={this._handleSelectValueChange.bind(this, 'selectValue1')}
-          menuItems={arbitraryArrayMenuItems} />
+        <Toggle
+          name="theme"
+          value="toggleValue1"
+          label="Theme" 
+          onToggle={this._handleThemeToggle.bind(this)} />
         <br/>
         <SelectField
           floatingLabelText="Setting 2"

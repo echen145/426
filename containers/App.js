@@ -6,13 +6,15 @@ import Landing from '../components/Landing'
 import * as MapActions from '../actions/map'
 import * as FundActions from '../actions/fund'
 import * as LoginActions from '../actions/login'
+import * as SettingsActions from '../actions/settings'
 import { updatePath } from 'redux-simple-router'
 
 function mapStateToProps(state) {
   return {
   	map: state.map,
   	fund: state.fund,
-  	login: state.login
+  	login: state.login,
+    settings: state.settings
   }
 }
 
@@ -21,6 +23,7 @@ function mapDispatchToProps(dispatch) {
 		actions: bindActionCreators(MapActions, dispatch),
 		fundActions: bindActionCreators(FundActions, dispatch),
 		loginActions: bindActionCreators(LoginActions, dispatch),
+    settingsActions: bindActionCreators(SettingsActions, dispatch),
 		updatePath: bindActionCreators(updatePath, dispatch) 
 	}
 }
@@ -58,7 +61,12 @@ class App extends Component {
 	}
 
 	render() {
-		const { map, fund, login, updatePath, actions, fundActions, loginActions } = this.props
+		const { 
+      map, fund, 
+      login, updatePath, 
+      actions, fundActions, 
+      loginActions, settingsActions 
+    } = this.props
 		console.log(this.props.loginActions)
 		// console.log(this.props)
 		// console.log(this.state.idToken)
@@ -69,13 +77,14 @@ class App extends Component {
 			app = (
 				<div> 
 					<NavBar updatePath={updatePath} loginActions={loginActions} />
-					<div className="scren">
+					<div className="app">
 						{this.props.children && React.cloneElement(this.props.children, 
 							{ 
 								map: map, 
 								fund: fund, 
 								actions: actions, 
 								fundActions: fundActions,
+                settingsActions: settingsActions,
 								updatePath: updatePath })}
 					</div>
 				</div>				
@@ -102,6 +111,7 @@ App.propTypes = {
 	map: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired, 
 	fundActions: PropTypes.object.isRequired,
+  settingsActions: PropTypes.object.isRequired,
 	updatePath: PropTypes.func.isRequired
 }
 
