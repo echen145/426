@@ -3,7 +3,7 @@ import List from 'material-ui/lib/lists/list'
 import ListDivider from 'material-ui/lib/lists/list-divider'
 import ListItem from 'material-ui/lib/lists/list-item'
 
-export default class FundSummary extends Component {
+class FundSummary extends Component {
   render() {
     return (
       <div>
@@ -35,3 +35,5 @@ export default class FundSummary extends Component {
 FundSummary.propTypes = {
   fund: PropTypes.object.isRequired
 }
+
+export default FundSummary

@@ -4,7 +4,7 @@ import Tab from 'material-ui/lib/tabs/tab'
 import FundSummary from '../components/FundSummary'
 import FundMap from '../components/FundMap'
 
-export default class FundScreen extends Component {
+class FundScreen extends Component {
   render() {
     const { fundId } = this.props.params
     const fund = this.props.fund[fundId]
@@ -30,3 +30,5 @@ Fund.propTypes = {
   map: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired
 }
+
+export default FundScreen

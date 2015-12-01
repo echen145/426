@@ -2,7 +2,7 @@ import {ClearFix, Mixins, TextField, RaisedButton, Dialog} from 'material-ui'
 import {default as React, Component, PropTypes} from "react"
 const {StyleResizable} = Mixins
 
-export default class TextBox extends Component {
+class TextBox extends Component {
   mixins: [StyleResizable]
 
   constructor(props, context) {
@@ -278,3 +278,5 @@ TextBox.propTypes = {
   addFund: PropTypes.func.isRequired,
   updatePath: PropTypes.func.isRequired
 }
+
+export default TextBox

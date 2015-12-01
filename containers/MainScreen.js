@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import DirectionMap from '../components/DirectionMap'
 import TextBox from '../components/TextBox'
 
-export default class MainScreen extends Component {
+class MainScreen extends Component {
   render() {
     // console.log(this.props)
     let styles = {
@@ -28,3 +28,5 @@ MainScreen.propTypes = {
   actions: PropTypes.object.isRequired,
   fundActions: PropTypes.object.isRequired
 }
+
+export default MainScreen

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from "react"
 import {
   App,
-  Footer, 
+  Footer,
   Hero,
   HorizontalSplit,
   Navbar, NavItem,
@@ -12,7 +12,7 @@ import {
 const brandName = "426 App"
 const brand = <span>{brandName}</span>
 
-export default class Landing extends Component {
+class Landing extends Component {
   showLock() {
     this.props.lock.show()
   }
@@ -24,14 +24,14 @@ export default class Landing extends Component {
           <Navbar brand={brand}>
             <NavItem><a onClick={this.showLock.bind(this)}>Sign In</a></NavItem>
           </Navbar>
-          <Hero 
+          <Hero
             backgroundImage="https://static.pexels.com/photos/1188/city-landmark-lights-night.jpg"
             className="text-center">
             <h1 className="display-1"> Google Maps Fund App </h1>
             <p> App description </p>
             <p>
               <a href="https://github.com/dongy7/426" target="_blank" className="btn btn-white">
-                View on Github 
+                View on Github
               </a>
             </p>
           </Hero>
@@ -65,13 +65,13 @@ export default class Landing extends Component {
                 </p>
               </div>
             </HorizontalSplit>
-          </Section>          
+          </Section>
 
           <Footer brandName={brandName}
             githubUrl="https://github.com/dongy7/426">
           </Footer>
         </Page>
-      </App>      
+      </App>
     )
   }
 }
@@ -81,5 +81,4 @@ Landing.propTypes = {
   lock: PropTypes.object.isRequired
 }
 
-
-
+export default Landing

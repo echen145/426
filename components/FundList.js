@@ -3,7 +3,7 @@ import ListDivider from 'material-ui/lib/lists/list-divider'
 import ListItem from 'material-ui/lib/lists/list-item'
 import React, {Component, PropTypes} from 'react'
 
-export default class FundList extends Component {
+class FundList extends Component {
   constructor() {
     super()
   }
@@ -36,3 +36,5 @@ FundList.propTypes = {
   fund: PropTypes.array.isRequired,
   updatePath: PropTypes.func.isRequired
 }
+
+export default FundList

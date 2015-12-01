@@ -4,7 +4,7 @@ import {GoogleMap, DirectionsRenderer} from "react-google-maps"
 /*
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
-export default class DirectionMap extends Component {
+class DirectionMap extends Component {
   constructor(props, context) {
     super(props, context)
     // console.log(this.props)
@@ -63,3 +63,5 @@ export default class DirectionMap extends Component {
 DirectionMap.propTypes = {
   map: PropTypes.object.isRequired
 }
+
+export default DirectionMap

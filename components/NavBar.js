@@ -8,7 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 
 injectTapEventPlugin()
 
-export default class NavBar extends Component {
+class NavBar extends Component {
 	constructor() {
 	    super()
 	    this._toggleNav = this._toggleNav.bind(this);
@@ -80,3 +80,5 @@ NavBar.propTypes = {
 	updatePath: PropTypes.func.isRequired,
 	loginActions: PropTypes.object.isRequired
 }
+
+export default NavBar
