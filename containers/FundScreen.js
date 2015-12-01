@@ -25,7 +25,7 @@ class FundScreen extends Component {
   }
 }
 
-Fund.propTypes = {
+FundScreen.propTypes = {
   fund: PropTypes.object.isRequired,
   map: PropTypes.object.isRequired,
   params: PropTypes.object.isRequired
