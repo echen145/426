@@ -45,7 +45,37 @@ export default class Landing extends Component {
               </a>
             </p>
           </Hero>
-          
+
+          <Section>
+            <HorizontalSplit padding="md">
+              <div>
+                <p className="lead">Responsive</p>
+                <p>
+                  This app is built using the UI library <a href="https://facebook.github.io/react/" target="_blank">React</a>, 
+                  and Facebook's <a href="https://facebook.github.io/flux/" target="_blank">Flux architecture</a>. Our app also follows the design principles of 
+                  Google's <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank">Material Design</a>. 
+                  The map data from the app comes from the <a href="https://developers.google.com/maps/" target="_blank">Google Maps API</a>.
+                </p>
+              </div>
+              <div>
+                <p className="lead">Ease of Use</p>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
+                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+                    sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                  </p>
+              </div>
+              <div>
+                <p className="lead">Extensible</p>
+                <p>
+                  Nam doctus facilisi explicari eu. Ut sit petentium democritum, nihil habemus cum in, nam tantas referrentur ut. 
+                  Ad ridens lobortis mel, mel fugit vulputate ullamcorper ea. Ut ius vero audiam percipit, his ne platonem elaboraret. 
+                  Nec quot quas natum et, vis wisi ubique corpora an, eum mucius invenire assueverit cu.
+                </p>
+              </div>
+            </HorizontalSplit>
+          </Section>          
 
           <Footer brandName={brandName}
             githubUrl="https://github.com/dongy7/426">
