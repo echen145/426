@@ -7,6 +7,7 @@ import DirectionMap from '../components/DirectionMap'
 import TextBox from '../components/TextBox'
 import FundList from '../components/FundList'
 import Home from '../components/Home'
+import Landing from '../components/Landing'
 import * as MapActions from '../actions/map'
 import * as FundActions from '../actions/fund'
 import * as LoginActions from '../actions/login'
@@ -86,9 +87,9 @@ class App extends Component {
 			)
 		} else {
 			app = (
-				<Home 
-					lock={this.lock} 
-					loginActions={loginActions} />				
+        <Landing
+          lock={this.lock}
+          loginActions={loginActions} />	
 			)
 		}
 
