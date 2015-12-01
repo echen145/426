@@ -8,18 +8,25 @@ export default class FundScreen extends Component {
   render() {
     const { fundId } = this.props.params
     const fund = this.props.fund[fundId]
-    console.log(this.props)
+    const map = this.props.map
+    // console.log(this.props)
     return (
       <Tabs>
         <Tab label="Summary" >
           <FundSummary fund={fund} />
         </Tab>
         <Tab label="Map" >
-          <FundMap map={this.props.map} />
+          <FundMap map={map} />
         </Tab>
         <Tab label="Edit" >
         </Tab >
       </Tabs>
     )
   }
+}
+
+Fund.propTypes = {
+  fund: PropTypes.object.isRequired,
+  map: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired
 }

@@ -2,11 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import { 
 	LeftNav, 
 	AppBar, 
-	FlatButton, 
-	IconMenu, 
-	IconButton, 
-	MoreVertIcon,
-	MenuItem } from 'material-ui'
+	FlatButton } from 'material-ui'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
@@ -78,4 +74,9 @@ export default class NavBar extends Component {
 			</div>
 		)
 	}
+}
+
+NavBar.propTypes = {
+	updatePath: PropTypes.func.isRequired,
+	loginActions: PropTypes.object.isRequired
 }

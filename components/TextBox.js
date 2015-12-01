@@ -1,5 +1,5 @@
 import {ClearFix, Mixins, TextField, RaisedButton, Dialog} from 'material-ui'
-import {default as React, Component} from "react"
+import {default as React, Component, PropTypes} from "react"
 const {StyleResizable} = Mixins
 
 export default class TextBox extends Component {
@@ -58,7 +58,7 @@ export default class TextBox extends Component {
     });
   }
 
-  _onDirectionSubmit(e) {
+  _onDirectionSubmit() {
     const startLat = this.refs.startLat.getValue()
     const startLong = this.refs.startLong.getValue()
     const destLat = this.refs.destLat.getValue()
@@ -77,7 +77,7 @@ export default class TextBox extends Component {
     }
   }
 
-  _onFundSubmit(e) {
+  _onFundSubmit() {
     const startLat = this.refs.startLat.getValue()
     const startLong = this.refs.startLong.getValue()
     const destLat = this.refs.destLat.getValue()
@@ -271,4 +271,10 @@ export default class TextBox extends Component {
       </div>
     )
   }
+}
+
+TextBox.propTypes = {
+  getDirection: PropTypes.func.isRequired,
+  addFund: PropTypes.func.isRequired,
+  updatePath: PropTypes.func.isRequired
 }

@@ -1,22 +1,12 @@
-import React, { Component } from "react"
-import { Link } from "react-router"
+import React, { Component, PropTypes } from "react"
 import {
   App,
-  Code,
-  CustomerQuote, CustomerQuotes,
-  DropdownMenu, DropdownToggle,
-  Footer, FooterAddress,
+  Footer, 
   Hero,
   HorizontalSplit,
-  ImageList, ImageListItem,
   Navbar, NavItem,
   Page,
-  PricingPlan, PricingTable,
-  Section,
-  SignupInline, SignupModal,
-  Stripe,
-  Team,
-  TeamMember,
+  Section
 } from "neal-react"
 
 const brandName = "426 App"
@@ -85,3 +75,11 @@ export default class Landing extends Component {
     )
   }
 }
+
+
+Landing.propTypes = {
+  lock: PropTypes.object.isRequired
+}
+
+
+

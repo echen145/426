@@ -31,3 +31,7 @@ export default class FundSummary extends Component {
     )
   }
 }
+
+FundSummary.propTypes = {
+  fund: PropTypes.object.isRequired
+}

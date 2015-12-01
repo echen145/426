@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import DirectionMap from '../components/DirectionMap'
 import TextBox from '../components/TextBox'
-import FundList from '../components/FundList'
 
 export default class MainScreen extends Component {
   render() {
@@ -22,4 +21,10 @@ export default class MainScreen extends Component {
       </div>
     )
   }
+}
+
+MainScreen.propTypes = {
+  map: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+  fundActions: PropTypes.object.isRequired
 }

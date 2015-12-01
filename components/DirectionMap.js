@@ -59,3 +59,7 @@ export default class DirectionMap extends Component {
     );
   }
 }
+
+DirectionMap.propTypes = {
+  map: PropTypes.object.isRequired
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import Home from '../components/Home' 
 import Setting from '../components/Setting'
 import NotFound from '../components/NotFound'
 import FundList from '../components/FundList'

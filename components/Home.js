@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import { RaisedButton } from 'material-ui'
 
 class Home extends Component {
@@ -18,5 +18,10 @@ class Home extends Component {
     )
   }
 }
+
+Home.propTypes = {
+  lock: PropTypes.object.isRequired
+}
+
 
 export default Home;

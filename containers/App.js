@@ -2,11 +2,6 @@ import { bindActionCreators } from 'redux'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import NavBar from '../components/NavBar'
-import SimpleMap from '../components/SimpleMap'
-import DirectionMap from '../components/DirectionMap'
-import TextBox from '../components/TextBox'
-import FundList from '../components/FundList'
-import Home from '../components/Home'
 import Landing from '../components/Landing'
 import * as MapActions from '../actions/map'
 import * as FundActions from '../actions/fund'
@@ -77,11 +72,11 @@ class App extends Component {
 					<div className="scren">
 						{this.props.children && React.cloneElement(this.props.children, 
 							{ 
-								map: this.props.map, 
-								fund: this.props.fund, 
-								actions: this.props.actions, 
-								fundActions: this.props.fundActions,
-								updatePath: this.props.updatePath })}
+								map: map, 
+								fund: fund, 
+								actions: actions, 
+								fundActions: fundActions,
+								updatePath: updatePath })}
 					</div>
 				</div>				
 			)

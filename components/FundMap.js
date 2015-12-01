@@ -53,3 +53,7 @@ export default class FundMap extends Component {
     );
   }
 }
+
+FundMap.propTypes = {
+  map: PropTypes.object.isRequired
+}
