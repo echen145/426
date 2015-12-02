@@ -9,12 +9,6 @@ const arbitraryArrayMenuItems = [
   {id:5, name:'Option 5'},
 ]
 
-const styles = {
-  textfield: {
-    marginLeft: 10,
-    marginTop: 10,
-  }
-}
 
 class Setting extends Component {
   constructor() {
@@ -26,6 +20,24 @@ class Setting extends Component {
     }
   }
 
+  getStyles() {
+    return {
+      container: {
+        textAlign: 'left',
+        marginBottom: '16px',
+        minHeight: '24px',
+        marginLeft: 10,
+        marginTop: 30
+      },
+      group: {
+        width: 250,
+      },
+      textfield: {
+        marginLeft: 10,
+        marginTop: 10,
+      }
+    };
+  }  
 
   _handleSelectValueChange(name, e) {
     const change = {}
@@ -38,14 +50,16 @@ class Setting extends Component {
   }
 
   render() {
+    let styles = this.getStyles()
     return (
-      <div className="settings">
-        <Toggle
-          name="theme"
-          value="toggleValue1"
-          label="Theme" 
-          onToggle={this._handleThemeToggle.bind(this)} />
-        <br/>
+      <div className="settings" style={styles.group} >
+        <div style={styles.container}>
+          <Toggle
+            name="theme"
+            value="toggleValue1"
+            label="Theme" 
+            onToggle={this._handleThemeToggle.bind(this)} />
+        </div>
         <SelectField
           floatingLabelText="Setting 2"
           style={styles.textfield}
