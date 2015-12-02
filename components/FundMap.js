@@ -41,8 +41,8 @@ class FundMap extends Component {
         <GoogleMap containerProps={{
             ...this.props,
             style: {
-              width: "450px",
-              height: "450px"
+              width: "100%",
+              height: "500px"
             },
           }}
           defaultZoom={7}

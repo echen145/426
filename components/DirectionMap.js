@@ -48,8 +48,8 @@ class DirectionMap extends Component {
       <GoogleMap containerProps={{
           ...this.props,
           style: {
-            width: "450px",
-            height: "450px"
+            widht: "100%",
+            height: "500px"
           },
         }}
         defaultZoom={7}

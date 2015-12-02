@@ -12,12 +12,18 @@ class MainScreen extends Component {
       }
     }
     return (
-      <div style={styles.main} > 
-        <DirectionMap map={this.props.map} />
-        <TextBox 
-          updatePath={this.props.updatePath} 
-          getDirection={this.props.actions.getDirection} 
-          addFund={this.props.fundActions.addFund} />
+      <div className="container-fluid">
+        <div className="row" style={styles.main} >
+          <div className="col-sm-6"> 
+            <DirectionMap map={this.props.map} />
+          </div>
+          <div className="col-sm-6">
+            <TextBox 
+              updatePath={this.props.updatePath} 
+              getDirection={this.props.actions.getDirection} 
+              addFund={this.props.fundActions.addFund} />
+          </div>
+        </div>
       </div>
     )
   }

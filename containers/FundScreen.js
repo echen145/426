@@ -16,7 +16,17 @@ class FundScreen extends Component {
           <FundSummary fund={fund} />
         </Tab>
         <Tab label="Map" >
-          <FundMap map={map} />
+          <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-2">
+            </div>
+            <div className="col-sm-8">
+              <FundMap map={map} />   
+            </div>
+            <div className="col-sm-2">
+            </div>
+          </div>
+          </div>
         </Tab>
         <Tab label="Edit" >
         </Tab >
