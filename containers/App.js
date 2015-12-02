@@ -8,6 +8,7 @@ import * as FundActions from '../actions/fund'
 import * as LoginActions from '../actions/login'
 import * as SettingsActions from '../actions/settings'
 import { updatePath } from 'redux-simple-router'
+import { CLIENT_ID, NAMESPACE } from '../constants/auth'
 import mui from 'material-ui'
 
 const { 
@@ -172,7 +173,7 @@ const App = React.createClass({
 	},
 
 	createLock() {
-		this.lock = new Auth0Lock('px52VJX59UvTobrMPIse4i9CJsPrSOsR', 'comp426.auth0.com')
+		this.lock = new Auth0Lock(CLIENT_ID, NAMESPACE)
 	},
 
 	getIdToken() {
