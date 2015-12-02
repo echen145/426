@@ -194,11 +194,9 @@ const App = React.createClass({
 
 	render() {
 		const { 
-      map, fund, 
-      login, settings,
+      login, 
       updatePath, 
-      actions, fundActions, 
-      loginActions, settingsActions 
+      loginActions 
     } = this.props
 
 		let app = null
@@ -209,14 +207,7 @@ const App = React.createClass({
 					<NavBar updatePath={updatePath} loginActions={loginActions} />
 					<div className="app">
 						{this.props.children && React.cloneElement(this.props.children, 
-							{ 
-								map: map, 
-								fund: fund, 
-                settings: settings,
-								actions: actions, 
-								fundActions: fundActions,
-                settingsActions: settingsActions,
-								updatePath: updatePath })}
+							{...this.props})}
 					</div>
 				</div>				
 			)
