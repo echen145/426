@@ -1,13 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import {GoogleMap, DirectionsRenderer} from "react-google-maps"
 
-/*
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
- */
 class DirectionMap extends Component {
   constructor(props, context) {
     super(props, context)
-    // console.log(this.props)
     this.state = {
       directions: null,
     }

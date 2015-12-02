@@ -9,7 +9,6 @@ class FundScreen extends Component {
     const { fundId } = this.props.params
     const fund = this.props.fund[fundId]
     const map = this.props.map
-    // console.log(this.props)
     return (
       <Tabs>
         <Tab label="Summary" >

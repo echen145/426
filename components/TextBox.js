@@ -63,7 +63,6 @@ class TextBox extends Component {
     const startLong = this.refs.startLong.getValue()
     const destLat = this.refs.destLat.getValue()
     const destLong = this.refs.destLong.getValue()
-    // console.log(this.props.getDirection)
 
     if(this._validateDirection(startLat, startLong, destLat, destLong)) {
       this.props.getDirection({
@@ -95,7 +94,6 @@ class TextBox extends Component {
         fundAmount: fundAmount,
         fundRaised: 0
       })
-      // console.log(this.props)
       this.props.updatePath('/funds')
     } else {
       this._handleStandardDialogTouchTap()

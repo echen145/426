@@ -1,9 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import {GoogleMap, DirectionsRenderer} from "react-google-maps"
 
-/*
- * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
- */
 class FundMap extends Component {
   constructor(props, context) {
     super(props, context)
@@ -12,11 +9,9 @@ class FundMap extends Component {
       destination: new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong),
       directions: null,
     }
-    // console.log(this.state)
   }
 
   componentDidMount() {
-    // console.log('mounting')
     const DirectionsService = new google.maps.DirectionsService()
     DirectionsService.route({
       origin: this.state.origin,

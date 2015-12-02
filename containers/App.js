@@ -1,5 +1,5 @@
 import { bindActionCreators } from 'redux'
-import React, { Component, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
@@ -199,14 +199,9 @@ const App = React.createClass({
       actions, fundActions, 
       loginActions, settingsActions 
     } = this.props
-		// console.log(this.props.loginActions)
-		// console.log(this.props)
-		// console.log(this.state.idToken)
 
-		let app
+		let app = null
     let styles = this.getStyles()
-		// console.log(login.loggedIn)
-    // console.log(styles.app)
 		if(login.loggedIn) {
 			app = (
 				<div> 
@@ -231,8 +226,6 @@ const App = React.createClass({
           loginActions={loginActions} />	
 			)
 		}
-
-		// console.log(app)
 
 		return (
 			<div style={styles.app}>

@@ -4,7 +4,6 @@ import TextBox from '../components/TextBox'
 
 class MainScreen extends Component {
   render() {
-    // console.log(this.props)
     let styles = {
       main: {
         marginLeft: 10,

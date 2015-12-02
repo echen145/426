@@ -18,14 +18,11 @@ class NavBar extends Component {
 	}
 
 	_handleLeftNavChange(e, selectedIndex, menuItem) {
-		// console.log(menuItem.route)
 		this.props.updatePath(menuItem.route, false)
 		this.refs.leftNav.toggle()
 	}
 
 	_handleSignOut() {
-		// e.preventDefault()
-		// console.log(this.props.loginActions)
 		localStorage.removeItem('userToken')
 		this.props.loginActions.logout()
 		this.props.updatePath('/')
@@ -33,8 +30,6 @@ class NavBar extends Component {
 
 	_toggleNav(e) {
 		e.preventDefault()
-		// console.log("toggle")
-		// console.log(this.refs)
 		this.refs.leftNav.toggle()
 	}
 
