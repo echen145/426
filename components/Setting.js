@@ -34,7 +34,7 @@ class Setting extends Component {
   }
 
   _handleThemeToggle() {
-    this.props.settingsActions.toggleTheme() 
+    this.props.settingsActions.toggleTheme(this.props.settings.isLight) 
   }
 
   render() {

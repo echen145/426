@@ -8,6 +8,17 @@ import * as FundActions from '../actions/fund'
 import * as LoginActions from '../actions/login'
 import * as SettingsActions from '../actions/settings'
 import { updatePath } from 'redux-simple-router'
+import mui from 'material-ui'
+
+const { 
+  Styles,
+  Mixins
+ } = mui
+const {StylePropable, StyleResizable} = Mixins
+const {Typography} = Styles
+const ThemeManager = Styles.ThemeManager
+const DefaultRawTheme = Styles.LightRawTheme
+const DarkRawTheme = Styles.DarkRawTheme
 
 function mapStateToProps(state) {
   return {
@@ -28,7 +39,127 @@ function mapDispatchToProps(dispatch) {
 	}
 }
 
-class App extends Component {
+const App = React.createClass({
+  mixins: [StylePropable, StyleResizable],
+
+  contextTypes : {
+    muiTheme: React.PropTypes.object,
+  },
+
+  //for passing default theme context to children
+  childContextTypes: {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getStyles() {
+    let canvasColor = this.state.muiTheme.rawTheme.palette.canvasColor;
+    let borderColor = this.state.muiTheme.rawTheme.palette.borderColor;
+    let styles = {
+      group: {
+        float: 'left',
+        width: '100%',
+        marginTop: '16px',
+        padding: '0 50px',
+        boxSizing: 'border-box',
+      },
+      groupSlider: {
+        marginTop: '0px',
+        width: '100%',
+      },
+      container: {
+        marginBottom: '16px',
+        minHeight: '24px',
+        textAlign: 'left',
+      },
+      containerCentered: {
+        textAlign: 'center',
+      },
+      paper: {
+        height: '100px',
+        width: '100px',
+        margin: '0 auto',
+        marginBottom: '64px',
+      },
+      textfield: {
+        width: '100%',
+      },
+      slider: {
+        marginTop: '0px',
+        marginBottom: '0px',
+      },
+      codeExample: {
+        backgroundColor: canvasColor,
+        marginBottom: '32px',
+      },
+      app: {
+        backgroundColor: canvasColor,
+        height: '100%'
+      },
+      title: {
+        fontSize: '20px',
+        lineHeight: '28px',
+        paddingTop: '19px',
+        marginBottom: '13px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightMedium,
+        color: Typography.textDarkBlack,
+      },
+      liveExamplePaper: {
+        backgroundColor: canvasColor,
+        marginBottom: 32,
+        overflow: 'hidden',
+      },
+      liveExampleBlock: {
+        borderRadius: '0 0 2px 0',
+        padding: this.state.muiTheme.rawTheme.spacing.desktopGutter,
+        margin: 0,
+      },
+      headline: {
+        fontSize: '24px',
+        lineHeight: '32px',
+        paddingTop: '16px',
+        marginBottom: '12px',
+        letterSpacing: '0',
+        fontWeight: Typography.fontWeightNormal,
+        color: Typography.textDarkBlack,
+      },
+      bottomBorderWrapper: {
+        borderBottom: 'solid 1px ' + borderColor,
+        paddingBottom: '10px',
+      },
+      inlineCode: {
+        backgroundColor: '#F8F8F8',
+      },
+    };
+
+    if (this.isDeviceSize(StyleResizable.statics.Sizes.MEDIUM)) {
+      styles.group.width = '33%';
+    }
+
+    styles.containerCentered = this.mergeStyles(styles.container, styles.containerCentered);
+    styles.groupSlider = this.mergeStyles(styles.group, styles.groupSlider);
+
+    return styles;
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: this.state.muiTheme,
+    };
+  },
+
+  getInitialState() {
+    return {
+      muiTheme: this.context.muiTheme ? this.context.muiTheme : ThemeManager.getMuiTheme(DarkRawTheme),
+      isThemeDark: false,
+    };
+  },
+
+  componentWillReceiveProps(nextProps) {
+    let newMuiTheme = nextProps.settings.isLight ? ThemeManager.getMuiTheme(DefaultRawTheme) : ThemeManager.getMuiTheme(DarkRawTheme)
+    this.setState({muiTheme: newMuiTheme});
+  },
+
 	componentWillMount() {
 		this.createLock()
 		let idToken = this.getIdToken()
@@ -38,11 +169,11 @@ class App extends Component {
 				idToken: idToken
 			})
 		}
-	}
+	},
 
 	createLock() {
 		this.lock = new Auth0Lock('px52VJX59UvTobrMPIse4i9CJsPrSOsR', 'comp426.auth0.com')
-	}
+	},
 
 	getIdToken() {
     var idToken = localStorage.getItem('userToken');
@@ -58,21 +189,24 @@ class App extends Component {
       }		
 		}
 		return idToken
-	}
+	},
 
 	render() {
 		const { 
       map, fund, 
-      login, updatePath, 
+      login, settings,
+      updatePath, 
       actions, fundActions, 
       loginActions, settingsActions 
     } = this.props
-		console.log(this.props.loginActions)
+		// console.log(this.props.loginActions)
 		// console.log(this.props)
 		// console.log(this.state.idToken)
 
 		let app
-		console.log(login.loggedIn)
+    let styles = this.getStyles()
+		// console.log(login.loggedIn)
+    // console.log(styles.app)
 		if(login.loggedIn) {
 			app = (
 				<div> 
@@ -82,6 +216,7 @@ class App extends Component {
 							{ 
 								map: map, 
 								fund: fund, 
+                settings: settings,
 								actions: actions, 
 								fundActions: fundActions,
                 settingsActions: settingsActions,
@@ -97,15 +232,15 @@ class App extends Component {
 			)
 		}
 
-		console.log(app)
+		// console.log(app)
 
 		return (
-			<div>
+			<div style={styles.app}>
 				{app}
 			</div>		
 		)
 	}
-}
+})
 
 App.propTypes = {
 	map: PropTypes.object.isRequired,
