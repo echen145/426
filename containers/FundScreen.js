@@ -7,7 +7,7 @@ import FundMap from '../components/FundMap'
 class FundScreen extends Component {
   render() {
     const { fundId } = this.props.params
-    const fund = this.props.fund[fundId]
+    const fund = this.props.funds[fundId]
     const map = this.props.map
     return (
       <Tabs>

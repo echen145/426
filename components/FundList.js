@@ -12,7 +12,7 @@ class FundList extends Component {
     // console.log(this.props)
     return (
       <List subheader="Funds">
-        {this.props.fund.map((fund, index) =>
+        {this.props.funds.map((fund, index) =>
           <div>
             <ListItem
               primaryText={fund.fundName}
@@ -29,7 +29,7 @@ class FundList extends Component {
 }
 
 FundList.propTypes = {
-  fund: PropTypes.array.isRequired,
+  funds: PropTypes.array.isRequired,
   updatePath: PropTypes.func.isRequired
 }
 

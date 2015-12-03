@@ -9,7 +9,7 @@ class FundListScreen extends Component {
           onClick={(index) => 
             this.props.updatePath('/fund/' + index)
           }
-          fund={this.props.fund}
+          funds={this.props.funds}
         />
       </div>
     )

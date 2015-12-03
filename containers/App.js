@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import NavBar from '../components/NavBar'
 import Landing from '../components/Landing'
 import * as MapActions from '../actions/map'
-import * as FundActions from '../actions/fund'
+import * as FundActions from '../actions/funds'
 import * as LoginActions from '../actions/login'
 import * as SettingsActions from '../actions/settings'
 import { updatePath } from 'redux-simple-router'
@@ -24,7 +24,7 @@ const DarkRawTheme = Styles.DarkRawTheme
 function mapStateToProps(state) {
   return {
   	map: state.map,
-  	fund: state.fund,
+  	funds: state.funds,
   	login: state.login,
     settings: state.settings
   }
