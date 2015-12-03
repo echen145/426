@@ -18,8 +18,8 @@ class MainScreen extends Component {
           </div>
           <div className="col-sm-6">
             <TextBox 
-              updatePath={this.props.updatePath} 
-              getDirection={this.props.actions.getDirection} 
+              updatePath={() => this.props.updatePath('/funds')} 
+              getDirection={this.props.mapActions.getDirection} 
               addFund={this.props.fundActions.addFund} />
           </div>
         </div>
@@ -30,7 +30,7 @@ class MainScreen extends Component {
 
 MainScreen.propTypes = {
   map: PropTypes.object.isRequired,
-  actions: PropTypes.object.isRequired,
+  mapAction: PropTypes.object.isRequired,
   fundActions: PropTypes.object.isRequired
 }
 

@@ -8,10 +8,6 @@ class FundList extends Component {
     super()
   }
 
-  _onClick(index) {
-    this.props.updatePath('/fund/'+index)
-  } 
-
   render() {
     // console.log(this.props)
     return (
@@ -23,7 +19,7 @@ class FundList extends Component {
               secondaryText={<p>Goal: ${fund.fundAmount}</p>}
               secondaryTextLines={1} 
               key={index}
-              onTouchTap={this._onClick.bind(this, index)} />
+              onTouchTap={this.props.onClick.bind(this, index)} />
              <ListDivider />
           </div>
           )}

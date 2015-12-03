@@ -32,7 +32,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		actions: bindActionCreators(MapActions, dispatch),
+		mapActions: bindActionCreators(MapActions, dispatch),
 		fundActions: bindActionCreators(FundActions, dispatch),
 		loginActions: bindActionCreators(LoginActions, dispatch),
     settingsActions: bindActionCreators(SettingsActions, dispatch),
@@ -229,7 +229,7 @@ const App = React.createClass({
 
 App.propTypes = {
 	map: PropTypes.object.isRequired,
-	actions: PropTypes.object.isRequired, 
+	mapActions: PropTypes.object.isRequired, 
 	fundActions: PropTypes.object.isRequired,
   settingsActions: PropTypes.object.isRequired,
 	updatePath: PropTypes.func.isRequired

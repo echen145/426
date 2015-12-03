@@ -94,7 +94,7 @@ class TextBox extends Component {
         fundAmount: fundAmount,
         fundRaised: 0
       })
-      this.props.updatePath('/funds')
+      this.props.updatePath()
     } else {
       this._handleStandardDialogTouchTap()
     }
