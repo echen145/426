@@ -1,25 +1,40 @@
 import React, { PropTypes, Component } from 'react'
-import { TextField, RaisedButton } from 'material-ui'
+import { TextField, RaisedButton, DatePicker } from 'material-ui'
 
 class FundEditor extends Component {
   constructor(props, context) {
     super(props, context) 
     this._onAddSubmit = this._onAddSubmit.bind(this)
     this.state = {
-      errorText: 'This field must be numeric'
+      errorText1: 'This field is required.',
+      errorText2: 'This field must be numeric'
     }
   }
 
   _onAddSubmit() {
+    const name = this.refs.name.getValue()
     const amount = this.refs.amount.getValue()
-    this.props.addToFund(amount)  
+    const date = this.refs.date.getDate()
+    const donation = {
+      name: name,
+      amount: amount,
+      date: date
+    }
+    console.log(donation)
+    this.props.addToFund(donation)  
+  }
+
+  _handleErrorInputChange(e) {
+    this.setState({
+      errorText1: e.target.value ? '' : 'This field is required.',
+    })
   }
 
   _handleNumericErrorInputChange(e) {
     let value = e.target.value;
     let isNumeric = !isNaN(parseFloat(value)) && isFinite(value);
     this.setState({
-      errorText: isNumeric ? '' : 'This field must be numeric.',
+      errorText2: isNumeric ? '' : 'This field must be numeric.',
     });
   }
 
@@ -48,15 +63,29 @@ class FundEditor extends Component {
     return (
       <div>
         <TextField 
+          ref="name"
+          floatingLabelText="Donor Name"
+          errorText={this.state.errorText1}
+          onChange={this._handleErrorInputChange.bind(this)}
+          multiLine={true}
+          styles={styles.textfield}
+          errorStyle={styles.errorStyle}
+        />
+        <TextField 
           ref="amount"
           floatingLabelText="Contribution Amount ($)"
           defaultValue="0"
-          errorText={this.state.errorText}
+          errorText={this.state.errorText2}
           onChange={this._handleNumericErrorInputChange.bind(this)}
           multiLine={true}
           styles={styles.textfield}
           errorStyle={styles.errorStyle}
         />
+        <DatePicker
+          ref="date"
+          hintText="Donation Date"
+          container="inline"
+          autoOk={true} />
         <RaisedButton 
           label="Add to Fund"
           secondary={true}

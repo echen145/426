@@ -8,10 +8,10 @@ export function addFund(fund) {
   }
 }
 
-export function addToFund(index, amount) {
+export function addToFund(index, donation) {
   return {
     type: 'ADD_TO_FUND',
     index,
-    amount
+    donation
   }
 }

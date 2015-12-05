@@ -92,7 +92,8 @@ class TextBox extends Component {
         destLong: destLong,
         fundName: fundName,
         fundAmount: fundAmount,
-        fundRaised: 0
+        fundRaised: 0,
+        donations: []
       })
       this.props.updatePath()
     } else {
