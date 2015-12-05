@@ -3,12 +3,14 @@ import Tabs from 'material-ui/lib/tabs/tabs'
 import Tab from 'material-ui/lib/tabs/tab'
 import FundSummary from '../components/FundSummary'
 import FundMap from '../components/FundMap'
+import FundEditor from '../components/FundEditor'
 
 class FundScreen extends Component {
   render() {
     const { fundId } = this.props.params
     const fund = this.props.funds[fundId]
     const map = this.props.map
+    const { addToFund } = this.props.fundActions
     return (
       <Tabs>
         <Tab label="Summary" >
@@ -28,6 +30,11 @@ class FundScreen extends Component {
           </div>
         </Tab>
         <Tab label="Edit" >
+          <FundEditor 
+            addToFund = {(amount) => 
+              addToFund(fundId, amount)
+            }
+          />
         </Tab >
       </Tabs>
     )
