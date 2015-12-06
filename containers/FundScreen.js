@@ -29,7 +29,10 @@ class FundScreen extends Component {
             <div className="col-sm-2">
             </div>
             <div className="col-sm-8">
-              <FundMap map={map} />   
+              <FundMap 
+                map={map} 
+                fund={fund}
+                />   
             </div>
             <div className="col-sm-2">
             </div>

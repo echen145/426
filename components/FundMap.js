@@ -49,10 +49,21 @@ class FundMap extends Component {
 
   render () {
     const {origin, directions, polyline} = this.state;
+    let dists = []
+    let percent = 0
+    const total = this.props.fund['fundAmount']
+    const donations = this.props.fund['donations']
     let latlng = null
+
     if(polyline) {
-      latlng = polyline.GetPointAtDistance(polyline.Distance()*(50)/100)      
+      for (let i = 0; i < donations.length; i++) {
+        percent = percent + (donations[i].amount)/total    
+        latlng = polyline.GetPointAtDistance(polyline.Distance()*percent)
+        dists.push(latlng)
+      }
     }
+
+
     return (
       <div id="map">
         <GoogleMap containerProps={{
@@ -65,7 +76,7 @@ class FundMap extends Component {
           defaultZoom={7}
           defaultCenter={origin}>
           {directions ? <DirectionsRenderer directions={directions} /> : null}
-          {polyline ? <Marker defaultPosition={latlng} /> : null }
+          {polyline ?  (dists.map((latlng) => <Marker defaultPosition={latlng} />)) : null }
         </GoogleMap>
       </div>
     );
@@ -73,7 +84,8 @@ class FundMap extends Component {
 }
 
 FundMap.propTypes = {
-  map: PropTypes.object.isRequired
+  map: PropTypes.object.isRequired,
+  fund: PropTypes.object.isRequired
 }
 
 export default FundMap
