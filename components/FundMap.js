@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import {GoogleMap, DirectionsRenderer} from "react-google-maps"
+import {GoogleMap, DirectionsRenderer, Marker} from "react-google-maps"
+
 
 class FundMap extends Component {
   constructor(props, context) {
@@ -8,6 +9,7 @@ class FundMap extends Component {
       origin: new google.maps.LatLng(this.props.map.startLat, this.props.map.startLong),
       destination: new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong),
       directions: null,
+      polyline: null
     }
   }
 
@@ -19,8 +21,24 @@ class FundMap extends Component {
       travelMode: google.maps.TravelMode.DRIVING
     }, (result, status) => {
       if(status == google.maps.DirectionsStatus.OK) {
+        let polyline = new google.maps.Polyline({
+          path: [],
+          strokeColor: '#FF0000',
+          strokeWeight: 3
+        });
+        const legs = result.routes[0].legs
+        for (let i=0;i<legs.length;i++) {
+          let steps = legs[i].steps;
+          for (let j=0;j<steps.length;j++) {
+            let nextSegment = steps[j].path;
+            for (let k=0;k<nextSegment.length;k++) {
+              polyline.getPath().push(nextSegment[k]);
+            }
+          }
+        }
         this.setState({
-          directions: result
+          directions: result, 
+          polyline: polyline
         })
       }
       else {
@@ -30,7 +48,11 @@ class FundMap extends Component {
   }
 
   render () {
-    const {origin, directions} = this.state;
+    const {origin, directions, polyline} = this.state;
+    let latlng = null
+    if(polyline) {
+      latlng = polyline.GetPointAtDistance(polyline.Distance()*(50)/100)      
+    }
     return (
       <div id="map">
         <GoogleMap containerProps={{
@@ -43,6 +65,7 @@ class FundMap extends Component {
           defaultZoom={7}
           defaultCenter={origin}>
           {directions ? <DirectionsRenderer directions={directions} /> : null}
+          {polyline ? <Marker defaultPosition={latlng} /> : null }
         </GoogleMap>
       </div>
     );
