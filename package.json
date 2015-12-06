@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/dongy7/426.git",
   "dependencies": {
+    "dateformat": "^1.0.12",
     "history": "^1.13.1",
     "material-ui": "^0.13.4",
     "neal-react": "^0.2.1",

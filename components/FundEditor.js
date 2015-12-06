@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import { TextField, RaisedButton, DatePicker } from 'material-ui'
+import dateformat from 'dateformat'
 
 class FundEditor extends Component {
   constructor(props, context) {
@@ -18,7 +19,7 @@ class FundEditor extends Component {
     const donation = {
       name: name,
       amount: amount,
-      date: date
+      date: dateformat(date, "m/dd/yy")
     }
     console.log(donation)
     this.props.addToFund(donation)  

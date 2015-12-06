@@ -15,7 +15,7 @@ class DonationHistory extends Component {
               secondaryText={
                 <p>
                   <span style={{color: Colors.darkBlack}}>Amount: ${donation.amount}</span><br/>
-                  {donation.date.toString()}
+                  {donation.date}
                 </p>
               }
               secondaryTextLines={2} 
