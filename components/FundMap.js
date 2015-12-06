@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import {GoogleMap, DirectionsRenderer, Marker} from "react-google-maps"
+import {GoogleMap, DirectionsRenderer, Marker, InfoWindow } from "react-google-maps"
 
 
 class FundMap extends Component {
@@ -47,20 +47,61 @@ class FundMap extends Component {
     })
   }
 
+  handleMarkerClick(marker) {
+    marker.showInfo = true
+    this.setState(this.state)
+  }
+
+  handleCloseClick(marker) {
+    marker.showInfo = false
+    this.setState(this.state)
+  }
+
+  renderInfoWindow (ref, marker) {
+    return (
+      <InfoWindow key={`${ref}_info_window`}>
+        <div>
+          <strong>{marker.title}</strong>
+          <br />
+          <em>${marker.content}</em>
+        </div>
+      </InfoWindow>
+    )
+  }
+
   render () {
     const {origin, directions, polyline} = this.state;
-    let dists = []
+    let markers = []
     let percent = 0
     const total = this.props.fund['fundAmount']
     const donations = this.props.fund['donations']
     let latlng = null
+    let markerProps = null
 
     if(polyline) {
       for (let i = 0; i < donations.length; i++) {
         percent = percent + (donations[i].amount)/total    
         latlng = polyline.GetPointAtDistance(polyline.Distance()*percent)
-        dists.push(latlng)
+        markers.push({
+          pos: latlng,
+          title: donations[i].name,
+          content: donations[i].amount,
+          showInfo: true
+        })
       }
+
+      markerProps = markers.map((marker, index) => {
+        const ref = `marker_${index}`
+        return (
+          <Marker 
+            key={ref} 
+            ref={ref}
+            position={marker.pos}>
+            {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
+          </Marker>
+          )        
+      })
+
     }
 
 
@@ -76,7 +117,7 @@ class FundMap extends Component {
           defaultZoom={7}
           defaultCenter={origin}>
           {directions ? <DirectionsRenderer directions={directions} /> : null}
-          {polyline ?  (dists.map((latlng) => <Marker defaultPosition={latlng} />)) : null }
+          {polyline ?  markerProps : null }
         </GoogleMap>
       </div>
     );
