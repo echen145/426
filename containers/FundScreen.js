@@ -10,9 +10,9 @@ class FundScreen extends Component {
   render() {
     const { fundId } = this.props.params
     const fund = this.props.funds[fundId]
-    const map = this.props.map
+    const map = fund.map
     const { addToFund } = this.props.fundActions
-    const donations = fund['donations']
+    const donations = fund.donations
     return (
       <Tabs>
         <Tab label="Summary" >

@@ -86,10 +86,12 @@ class TextBox extends Component {
 
     if(this._validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount)) {
       this.props.addFund({
-        startLat: startLat,
-        startLong: startLong,
-        destLat: destLat,
-        destLong: destLong,
+        map: {
+          startLat: startLat,
+          startLong: startLong,
+          destLat: destLat,
+          destLong: destLong,          
+        },
         fundName: fundName,
         fundAmount: fundAmount,
         fundRaised: 0,
