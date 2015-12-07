@@ -1,15 +1,25 @@
 import React, { PropTypes, Component } from 'react'
-import { TextField, RaisedButton, DatePicker } from 'material-ui'
+import { TextField, RaisedButton, DatePicker, Snackbar } from 'material-ui'
 import dateformat from 'dateformat'
 
 class FundEditor extends Component {
   constructor(props, context) {
     super(props, context) 
     this._onAddSubmit = this._onAddSubmit.bind(this)
+    this.handleDonationSubmit = this.handleDonationSubmit.bind(this)
     this.state = {
       errorText1: 'This field is required.',
-      errorText2: 'This field must be numeric'
+      errorText2: 'This field must be numeric',
+      autoHideDuration: 0
     }
+  }
+
+  handleDonationSubmit() {
+    this.refs.snackbar.show()
+  }
+
+  _handleAction() {
+    window.alert('Fund added!')
   }
 
   _onAddSubmit() {
@@ -23,6 +33,7 @@ class FundEditor extends Component {
     }
     console.log(donation)
     this.props.addToFund(donation)  
+    this.handleDonationSubmit()
   }
 
   _handleErrorInputChange(e) {
@@ -62,7 +73,7 @@ class FundEditor extends Component {
   render() {
     const styles = this.getStyles()
     return (
-      <div>
+      <div className="container-fluid">
         <TextField 
           ref="name"
           floatingLabelText="Donor Name"
@@ -92,6 +103,12 @@ class FundEditor extends Component {
           secondary={true}
           onTouchTap={this._onAddSubmit}
         />
+        <Snackbar
+          ref="snackbar"
+          message={'Donation added to your fund'}
+          action="undo"
+          autoHideDuration={this.state.autoHideDuration}
+          onActionTouchTap={this._handleAction} />
       </div>
     )
   }

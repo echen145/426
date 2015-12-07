@@ -10,6 +10,7 @@ class MainScreen extends Component {
         marginTop: 10
       }
     }
+
     return (
       <div className="container-fluid">
         <div className="row" style={styles.main} >

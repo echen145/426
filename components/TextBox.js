@@ -1,4 +1,4 @@
-import {ClearFix, Mixins, TextField, RaisedButton, Dialog} from 'material-ui'
+import {ClearFix, Mixins, TextField, RaisedButton, Snackbar, Dialog} from 'material-ui'
 import {default as React, Component, PropTypes} from "react"
 const {StyleResizable} = Mixins
 
@@ -9,6 +9,7 @@ class TextBox extends Component {
     super(props, context)
     this._onDirectionSubmit = this._onDirectionSubmit.bind(this)
     this._onFundSubmit = this._onFundSubmit.bind(this)
+    this.handleFundSubmit = this.handleFundSubmit.bind(this)
     this._handleStandardDialogTouchTap = this._handleStandardDialogTouchTap.bind(this)
     this._handleRequestClose = this._handleRequestClose.bind(this)
     this.state ={
@@ -19,8 +20,18 @@ class TextBox extends Component {
       startLatitudeErrText: 'This field must be a valid latitude (between -90 and 90)',
       destLatitudeErrText: 'This field must be a valid latitude (between -90 and 90)',
       startLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)',      
-      destLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)'
+      destLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)',
+      autoHideDuration: 0,
+      message: 'Fund added to your list'
     }
+  }
+
+  handleFundSubmit() {
+    this.refs.snackbar.show()
+  }
+
+  _handleAction() {
+    window.alert('Fund added!')
   }
 
   getStyles() {
@@ -97,7 +108,8 @@ class TextBox extends Component {
         fundRaised: 0,
         donations: []
       })
-      this.props.updatePath()
+      // this.props.updatePath()
+      this.handleFundSubmit()
     } else {
       this._handleStandardDialogTouchTap()
     }
@@ -189,6 +201,7 @@ class TextBox extends Component {
     let standardActions = [
       {text: 'Ok', ref: 'ok'},
     ]
+    console.log(this.state.message)
     return (
       <div>
         <Dialog
@@ -269,6 +282,12 @@ class TextBox extends Component {
             onTouchTap={this._onFundSubmit}
           />
         </div>
+        <Snackbar
+          ref="snackbar"
+          message={'Fund added to your list'}
+          action="undo"
+          autoHideDuration={this.state.autoHideDuration}
+          onActionTouchTap={this._handleAction} />
       </div>
     )
   }
