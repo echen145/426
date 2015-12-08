@@ -99,7 +99,9 @@ class FundMap extends Component {
 
   renderInfoWindow (ref, marker) {
     return (
-      <InfoWindow key={`${ref}_info_window`}>
+      <InfoWindow key={`${ref}_info_window`}
+        onCloseclick={this.handleCloseClick.bind(this, marker)}
+      >
         <div>
           <strong>{marker.title}</strong>
           <br />
@@ -119,6 +121,7 @@ class FundMap extends Component {
           <Marker 
             key={ref} 
             ref={ref}
+            onClick={this.handleMarkerClick.bind(this, marker)}
             position={marker.pos}>
             {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
           </Marker>
