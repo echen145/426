@@ -9,7 +9,9 @@ import DonationHistory from '../components/DonationHistory'
 class FundScreen extends Component {
   render() {
     const { fundId } = this.props.params
-    const fund = this.props.funds[fundId]
+    const funds = this.props.funds
+    const hashId = Object.keys(funds)[fundId]    
+    const fund = funds[hashId]
     const map = fund.map
     const { addToFund } = this.props.fundActions
     const donations = fund.donations
@@ -38,7 +40,7 @@ class FundScreen extends Component {
         </Tab>
         <Tab label="Edit" >
           <FundEditor 
-            fundId={fundId}
+            fundId={hashId}
             addToFund = {addToFund}
             token={this.props.login.idToken.idToken}
           />

@@ -20,7 +20,7 @@ class FundList extends Component {
               secondaryText={<p>Goal: ${funds[fund].fundAmount}</p>}
               secondaryTextLines={1} 
               key={index}
-              onTouchTap={this.props.onClick.bind(this, fund)} />
+              onTouchTap={this.props.onClick.bind(this, index)} />
              <ListDivider />
           </div>
           )}
