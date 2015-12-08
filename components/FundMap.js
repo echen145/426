@@ -6,12 +6,13 @@ class FundMap extends Component {
   constructor(props, context) {
     super(props, context)
     // console.log(this.props.map)
+    let markers = null
     this.state = {
       origin: new google.maps.LatLng(this.props.map.startLat, this.props.map.startLong),
       destination: new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong),
       directions: null,
       polyline: null,
-      markers: null
+      markers: markers
     }
   }
 
@@ -38,15 +39,51 @@ class FundMap extends Component {
             }
           }
         }
+        let markers = null
+        if(this.props.fund.donations) {
+          markers = this.getMarkers(this.props.fund, polyline)
+        }        
         this.setState({
           directions: result, 
-          polyline: polyline
+          polyline: polyline, 
+          markers: markers
         })
       }
       else {
         console.error(`error fetching directions ${ result }`);
       }
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.fund !== nextProps.fund) {
+      if(this.state.polyline) {
+        const markers = this.getMarkers(nextProps.fund, this.state.polyline)
+        this.setState({
+          markers: markers
+        })
+
+      }
+    }
+  }
+
+  getMarkers(fund, polyline) {
+    let percent = 0
+    let latlng = null   
+    const total = fund['fundAmount']
+    const donations = fund['donations'] ? fund['donations'] : []
+    let markers = []
+    Object.keys(donations).map((donation, index) => {
+      percent = percent + (donations[donation].amount)/total    
+      latlng = polyline.GetPointAtDistance(polyline.Distance()*percent)
+      markers.push({
+        pos: latlng,
+        title: donations[donation].name,
+        content: donations[donation].amount,
+        showInfo: true
+      })        
+    })    
+    return markers
   }
 
 
@@ -74,26 +111,9 @@ class FundMap extends Component {
 
   render () {
     const {origin, directions, polyline} = this.state;
-    let markers = []
-    let percent = 0
-    const total = this.props.fund['fundAmount']
-    const donations = this.props.fund['donations'] ? this.props.fund['donations'] : []
-    let latlng = null
     let markerProps = null
-
-    if(polyline) {
-      Object.keys(donations).map((donation, index) => {
-        percent = percent + (donations[donation].amount)/total    
-        latlng = polyline.GetPointAtDistance(polyline.Distance()*percent)
-        markers.push({
-          pos: latlng,
-          title: donations[donation].name,
-          content: donations[donation].amount,
-          showInfo: true
-        })        
-      })
-
-      markerProps = markers.map((marker, index) => {
+    if(this.state.markers) {
+      markerProps = this.state.markers.map((marker, index) => {
         const ref = `marker_${index}`
         return (
           <Marker 
@@ -103,8 +123,7 @@ class FundMap extends Component {
             {marker.showInfo ? this.renderInfoWindow(ref, marker) : null}
           </Marker>
           )        
-      })
-
+      })      
     }
 
 
@@ -120,7 +139,7 @@ class FundMap extends Component {
           defaultZoom={7}
           defaultCenter={origin}>
           {directions ? <DirectionsRenderer directions={directions} /> : null}
-          {(polyline)?  markerProps : null }
+          {(polyline && markerProps)?  markerProps : null }
         </GoogleMap>
       </div>
     );
