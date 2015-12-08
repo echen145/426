@@ -40,6 +40,7 @@ class FundScreen extends Component {
         </Tab>
         <Tab label="Edit" >
           <FundEditor 
+            fund={fund}
             fundId={hashId}
             addToFund = {addToFund}
             token={this.props.login.idToken.idToken}

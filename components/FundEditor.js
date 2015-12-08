@@ -32,7 +32,11 @@ class FundEditor extends Component {
       amount: amount,
       date: dateformat(date, "m/dd/yy")
     } 
-    postDonation(this.props.addToFund, this.props.token, this.props.fundId, donation)
+    const total = {
+      fundRaised: parseInt(this.props.fund.fundRaised) + parseInt(amount)
+    }
+
+    postDonation(this.props.addToFund, this.props.token, this.props.fundId, donation, total)
     this.handleDonationSubmit()
   }
 
