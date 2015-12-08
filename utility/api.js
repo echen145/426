@@ -1,5 +1,7 @@
+import {FIREBASE} from '../constants/api'
+
 export function getFunds(dispatch, token) {
-  const url = `https://426.firebaseio.com/users/${token}/funds.json`
+  const url = `${FIREBASE}${token}/funds.json`
   $.ajax({
     url: url,
     type: "GET"
@@ -15,7 +17,7 @@ export function getFunds(dispatch, token) {
 }
 
 export function postFund(dispatch, resource, token) {
-  const url = `https://426.firebaseio.com/users/${token}/funds.json`
+  const url = `${FIREBASE}${token}/funds.json`
   $.ajax({
     accept: "application/json",
     type: 'POST',
@@ -31,7 +33,7 @@ export function postFund(dispatch, resource, token) {
 }
 
 export function postDonation(dispatch, token, fundId, resource) {
-  const url = `https://426.firebaseio.com/users/${token}/funds/${fundId}/donations.json`
+  const url = `${FIREBASE}${token}/funds/${fundId}/donations.json`
   $.ajax({
     accept: "application/json",
     type: 'POST',
