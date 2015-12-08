@@ -1,7 +1,7 @@
 import { ADD_FUND, ADD_TO_FUND, INITIALIZE_FUNDS } from '../actions/funds'
 
 export default function funds(state = [], action) {
-  console.log(state)
+  // console.log(state)
   switch (action.type) {
     case ADD_FUND: 
       return [
@@ -18,7 +18,7 @@ export default function funds(state = [], action) {
           })              
         }) 
       })
-      console.log(nextState)
+      // console.log(nextState)
       return nextState
 
       // [

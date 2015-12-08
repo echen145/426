@@ -9,7 +9,6 @@ class FundList extends Component {
   }
 
   render() {
-    console.log(this.props)
     const funds = this.props.funds
     return (
       <List subheader="Funds">

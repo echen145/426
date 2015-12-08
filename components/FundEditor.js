@@ -31,9 +31,7 @@ class FundEditor extends Component {
       name: name,
       amount: amount,
       date: dateformat(date, "m/dd/yy")
-    }
-    console.log(donation)
-    // this.props.addToFund(donation)  
+    } 
     postDonation(this.props.addToFund, this.props.token, this.props.fundId, donation)
     this.handleDonationSubmit()
   }

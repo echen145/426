@@ -5,7 +5,7 @@ import {GoogleMap, DirectionsRenderer, Marker, InfoWindow } from "react-google-m
 class FundMap extends Component {
   constructor(props, context) {
     super(props, context)
-    console.log(this.props.map)
+    // console.log(this.props.map)
     this.state = {
       origin: new google.maps.LatLng(this.props.map.startLat, this.props.map.startLong),
       destination: new google.maps.LatLng(this.props.map.destLat, this.props.map.destLong),

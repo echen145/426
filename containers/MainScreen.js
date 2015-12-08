@@ -11,7 +11,6 @@ class MainScreen extends Component {
       }
     }
 
-    console.log(this.props.login.idToken)
     return (
       <div className="container-fluid">
         <div className="row" style={styles.main} >

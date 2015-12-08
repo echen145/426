@@ -204,7 +204,7 @@ class TextBox extends Component {
     let standardActions = [
       {text: 'Ok', ref: 'ok'},
     ]
-    console.log(this.state.message)
+    // console.log(this.state.message)
     return (
       <div>
         <Dialog

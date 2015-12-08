@@ -3,7 +3,7 @@ import FundList from '../components/FundList'
 
 class FundListScreen extends Component {
   render() {
-    console.log(this.props.funds)
+    // console.log(this.props.funds)
     return (
       <div>
         <FundList 

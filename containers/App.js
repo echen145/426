@@ -167,8 +167,6 @@ const App = React.createClass({
 		let idToken = this.getIdToken()
 		if (idToken) {
       idToken = idToken.split(".")[0]
-      console.log(idToken)
-			// console.log(this.props)
       getResource(this.props.fundActions, idToken)
 			this.props.loginActions.login({
 				idToken: idToken
