@@ -9,7 +9,7 @@ import * as LoginActions from '../actions/login'
 import * as SettingsActions from '../actions/settings'
 import { updatePath } from 'redux-simple-router'
 import { CLIENT_ID, NAMESPACE } from '../constants/auth'
-import { getResource } from '../constants/api'
+import { getFunds } from '../utility/api'
 import mui from 'material-ui'
 
 const { 
@@ -167,7 +167,7 @@ const App = React.createClass({
 		let idToken = this.getIdToken()
 		if (idToken) {
       idToken = idToken.split(".")[0]
-      getResource(this.props.fundActions, idToken)
+      getFunds(this.props.fundActions, idToken)
 			this.props.loginActions.login({
 				idToken: idToken
 			})

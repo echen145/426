@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { TextField, RaisedButton, DatePicker, Snackbar } from 'material-ui'
 import dateformat from 'dateformat'
-import { postDonation } from '../constants/api'
+import { postDonation } from '../utility/api'
 
 class FundEditor extends Component {
   constructor(props, context) {
