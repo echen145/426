@@ -1,5 +1,6 @@
 import {ClearFix, Mixins, TextField, RaisedButton, Snackbar, Dialog} from 'material-ui'
 import {default as React, Component, PropTypes} from "react"
+import { postResource } from '../constants/api'
 const {StyleResizable} = Mixins
 
 class TextBox extends Component {
@@ -96,7 +97,7 @@ class TextBox extends Component {
     const fundAmount = this.refs.fundAmount.getValue()
 
     if(this._validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount)) {
-      this.props.addFund({
+      const fund = {
         map: {
           startLat: startLat,
           startLong: startLong,
@@ -107,7 +108,9 @@ class TextBox extends Component {
         fundAmount: fundAmount,
         fundRaised: 0,
         donations: []
-      })
+      }
+      this.props.addFund(fund)
+      postResource(fund, this.props.token)
       // this.props.updatePath()
       this.handleFundSubmit()
     } else {

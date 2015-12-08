@@ -9,17 +9,18 @@ class FundList extends Component {
   }
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
+    const funds = this.props.funds
     return (
       <List subheader="Funds">
-        {this.props.funds.map((fund, index) =>
+        {Object.keys(funds).map((fund, index) =>
           <div>
             <ListItem
-              primaryText={fund.fundName}
-              secondaryText={<p>Goal: ${fund.fundAmount}</p>}
+              primaryText={funds[fund].fundName}
+              secondaryText={<p>Goal: ${funds[fund].fundAmount}</p>}
               secondaryTextLines={1} 
               key={index}
-              onTouchTap={this.props.onClick.bind(this, index)} />
+              onTouchTap={this.props.onClick.bind(this, fund)} />
              <ListDivider />
           </div>
           )}

@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import { TextField, RaisedButton, DatePicker, Snackbar } from 'material-ui'
 import dateformat from 'dateformat'
+import { postDonation } from '../constants/api'
 
 class FundEditor extends Component {
   constructor(props, context) {
@@ -32,7 +33,8 @@ class FundEditor extends Component {
       date: dateformat(date, "m/dd/yy")
     }
     console.log(donation)
-    this.props.addToFund(donation)  
+    // this.props.addToFund(donation)  
+    postDonation(this.props.addToFund, this.props.token, this.props.fundId, donation)
     this.handleDonationSubmit()
   }
 

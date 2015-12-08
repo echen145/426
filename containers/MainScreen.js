@@ -11,6 +11,7 @@ class MainScreen extends Component {
       }
     }
 
+    console.log(this.props.login.idToken)
     return (
       <div className="container-fluid">
         <div className="row" style={styles.main} >
@@ -21,6 +22,7 @@ class MainScreen extends Component {
             <TextBox 
               updatePath={() => this.props.updatePath('/funds')} 
               getDirection={this.props.mapActions.getDirection} 
+              token={this.props.login.idToken.idToken}
               addFund={this.props.fundActions.addFund} />
           </div>
         </div>

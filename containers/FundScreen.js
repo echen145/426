@@ -38,9 +38,9 @@ class FundScreen extends Component {
         </Tab>
         <Tab label="Edit" >
           <FundEditor 
-            addToFund = {(amount) => 
-              addToFund(fundId, amount)
-            }
+            fundId={fundId}
+            addToFund = {addToFund}
+            token={this.props.login.idToken.idToken}
           />
         </Tab >
       </Tabs>

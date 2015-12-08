@@ -5,17 +5,18 @@ const { Colors } = Styles
 
 class DonationHistory extends Component {
   render() {
+    const donations = this.props.donations ? this.props.donations : []
     return (
       <List subheader="Donation History">
-        {this.props.donations.map((donation, index) =>
+        {Object.keys(donations).map((donation, index) =>
           <div>
             <ListItem
-              primaryText={donation.name}
+              primaryText={donations[donation].name}
               key={index}
               secondaryText={
                 <p>
-                  <span style={{color: Colors.darkBlack}}>Amount: ${donation.amount}</span><br/>
-                  {donation.date}
+                  <span style={{color: Colors.darkBlack}}>Amount: ${donations[donation].amount}</span><br/>
+                  {donations[donation].date}
                 </p>
               }
               secondaryTextLines={2} 

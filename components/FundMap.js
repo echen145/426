@@ -77,21 +77,21 @@ class FundMap extends Component {
     let markers = []
     let percent = 0
     const total = this.props.fund['fundAmount']
-    const donations = this.props.fund['donations']
+    const donations = this.props.fund['donations'] ? this.props.fund['donations'] : []
     let latlng = null
     let markerProps = null
 
     if(polyline) {
-      for (let i = 0; i < donations.length; i++) {
-        percent = percent + (donations[i].amount)/total    
+      Object.keys(donations).map((donation, index) => {
+        percent = percent + (donations[donation].amount)/total    
         latlng = polyline.GetPointAtDistance(polyline.Distance()*percent)
         markers.push({
           pos: latlng,
-          title: donations[i].name,
-          content: donations[i].amount,
+          title: donations[donation].name,
+          content: donations[donation].amount,
           showInfo: true
-        })
-      }
+        })        
+      })
 
       markerProps = markers.map((marker, index) => {
         const ref = `marker_${index}`

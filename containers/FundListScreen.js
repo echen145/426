@@ -3,6 +3,7 @@ import FundList from '../components/FundList'
 
 class FundListScreen extends Component {
   render() {
+    console.log(this.props.funds)
     return (
       <div>
         <FundList 
@@ -18,7 +19,7 @@ class FundListScreen extends Component {
 
 FundListScreen.propTypes = {
   updatePath: PropTypes.func.isRequired,
-  fund: PropTypes.object.isRequired
+  funds: PropTypes.object.isRequired
 }
 
 export default FundListScreen
