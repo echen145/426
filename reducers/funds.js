@@ -4,10 +4,14 @@ export default function funds(state = [], action) {
   // console.log(state)
   switch (action.type) {
     case ADD_FUND: 
-      return [
-        ...state,
-        action.fund
-      ]
+      return  Object.assign({}, state, {
+        [action.index]: action.fund
+      })
+    // case ADD_FUND: 
+    //   return [
+    //     ...state,
+    //     action.fund
+    //   ]
     case ADD_TO_FUND:
       const fundIndex = action.fundIndex
       const nextState = Object.assign({}, state, {

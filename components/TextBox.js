@@ -109,8 +109,8 @@ class TextBox extends Component {
         fundRaised: 0,
         donations: []
       }
-      this.props.addFund(fund)
-      postResource(fund, this.props.token)
+      // this.props.addFund(fund)
+      postResource(this.props.addFund, fund, this.props.token)
       // this.props.updatePath()
       this.handleFundSubmit()
     } else {

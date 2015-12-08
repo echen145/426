@@ -2,9 +2,10 @@ export const ADD_FUND = 'ADD_FUND'
 export const ADD_TO_FUND = 'ADD_TO_FUND'
 export const INITIALIZE_FUNDS = "INITIALIZE_FUNDS"
 
-export function addFund(fund) {
+export function addFund(index, fund) {
   return {
     type: 'ADD_FUND',
+    index,
     fund
   }
 }

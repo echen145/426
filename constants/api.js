@@ -8,11 +8,16 @@ export function getResource(dispatch, token) {
     type: "GET"
   })
     .done(function(msg) {
-      dispatch.initializeFunds(msg)
+      console.log(msg)
+      if (msg === null) {
+        dispatch.initializeFunds({})
+      } else {
+        dispatch.initializeFunds(msg)
+      }
     })
 }
 
-export function postResource(resource, token) {
+export function postResource(dispatch, resource, token) {
   const url = `https://426.firebaseio.com/users/${token}/funds.json`
   $.ajax({
     accept: "application/json",
@@ -24,6 +29,7 @@ export function postResource(resource, token) {
   })
     .done(function(msg) {
       console.log(msg)
+      dispatch(msg.name, resource)
     })
 }
 

@@ -10,6 +10,7 @@ class FundList extends Component {
 
   render() {
     const funds = this.props.funds
+    console.log(funds)
     return (
       <List subheader="Funds">
         {Object.keys(funds).map((fund, index) =>
