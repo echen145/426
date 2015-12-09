@@ -38,7 +38,7 @@ class Landing extends Component {
 
           <Section>
             <HorizontalSplit padding="md">
-              <div>
+              <div class="name">
                 <p className="lead">Responsive</p>
                 <p>
                   This app is built using the UI library <a href="https://facebook.github.io/react/" target="_blank">React</a>, 
@@ -47,7 +47,7 @@ class Landing extends Component {
                   The map data from the app comes from the <a href="https://developers.google.com/maps/" target="_blank">Google Maps API</a>.
                 </p>
               </div>
-              <div>
+              <div class="info">
                 <p className="lead">Ease of Use</p>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -56,7 +56,7 @@ class Landing extends Component {
                     sunt in culpa qui officia deserunt mollit anim id est laborum. 
                   </p>
               </div>
-              <div>
+              <div class="name>
                 <p className="lead">Extensible</p>
                 <p>
                   Nam doctus facilisi explicari eu. Ut sit petentium democritum, nihil habemus cum in, nam tantas referrentur ut. 
