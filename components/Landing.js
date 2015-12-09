@@ -36,7 +36,7 @@ class Landing extends Component {
 
           <Section>
             <HorizontalSplit padding="md">
-              <div class="name">
+              <div class="info">
                 <p className="lead">Responsive</p>
                 <p>
                   This app is built using the UI library <a href="https://facebook.github.io/react/" target="_blank">React</a>, 
@@ -54,7 +54,7 @@ class Landing extends Component {
                     sunt in culpa qui officia deserunt mollit anim id est laborum. 
                   </p>
               </div>
-              <div class="name>
+              <div class="info>
                 <p className="lead">Extensible</p>
                 <p>
                   Nam doctus facilisi explicari eu. Ut sit petentium democritum, nihil habemus cum in, nam tantas referrentur ut. 
