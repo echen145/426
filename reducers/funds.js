@@ -14,11 +14,6 @@ export default function funds(state = [], action) {
     //   ]
     case ADD_TO_FUND:
       const fundIndex = action.fundIndex
-      var newDonation = parseInt(action.donation.amount, 10);
-      if (newDonation <= 0) {//Catches when donation is negative or 0
-        alert("Donation must be greater than $0");
-        return state;
-      }
       const nextState = Object.assign({}, state, {
         [fundIndex]: Object.assign({}, state[fundIndex], {
           fundRaised: state[fundIndex].fundRaised + newDonation,

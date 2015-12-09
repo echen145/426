@@ -42,7 +42,7 @@ class FundEditor extends Component {
   }
 
   validateNum(value) {
-    return !isNaN(parseFloat(value)) && isFinite(value)
+    return !isNaN(parseFloat(value)) && isFinite(value) && (value > 0)
   }
 
   validate(value) {
