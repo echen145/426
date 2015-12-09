@@ -16,7 +16,7 @@ export default function funds(state = [], action) {
       const fundIndex = action.fundIndex
       const nextState = Object.assign({}, state, {
         [fundIndex]: Object.assign({}, state[fundIndex], {
-          fundRaised: state[fundIndex].fundRaised + parseInt(action.donation.amount, 10),
+          fundRaised: state[fundIndex].fundRaised + newDonation,
           donations: Object.assign({}, state[fundIndex].donations, {
             [action.index]: action.donation
           })              

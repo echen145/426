@@ -21,7 +21,7 @@ class FundSummary extends Component {
             disabled={true} />
            <ListDivider />
            <ListItem
-            primaryText="Amout Raised"
+            primaryText="Amount Raised"
             secondaryText={<p>${this.props.fund.fundRaised}</p>}
             secondaryTextLines={1} 
             disabled={true} />
