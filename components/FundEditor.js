@@ -72,7 +72,9 @@ class FundEditor extends Component {
       }
 
       postDonation(this.props.addToFund, this.props.token, this.props.fundId, donation, total)
-      this.handleDonationSubmit()      
+      if (amount > 0) {
+      this.handleDonationSubmit()
+      }      
     } else {
       this._handleStandardDialogTouchTap()
     }
