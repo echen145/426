@@ -16,16 +16,19 @@ class Landing extends Component {
   showLock() {
     this.props.lock.show()
   }
+  
 
   render() {
     return (
+	
       <App>
         <Page>
           <Navbar brand={brand}>
             <NavItem><a onClick={this.showLock.bind(this)}>Sign In</a></NavItem>
           </Navbar>
-          <Hero>
-           <div id="googlemaps"></div>
+          <Hero
+            backgroundImage="https://static.pexels.com/photos/21014/pexels-photo.jpg"
+            className="text-center">
             <h1 className="display-1"> Google Maps Fund App </h1>
             <p>
               <a href="https://github.com/dongy7/426" target="_blank" className="btn btn-white">
@@ -36,7 +39,7 @@ class Landing extends Component {
 
           <Section>
             <HorizontalSplit padding="md">
-              <div class="info">
+              <div className="info">
                 <p className="lead">Responsive</p>
                 <p>
                   This app is built using the UI library <a href="https://facebook.github.io/react/" target="_blank">React</a>, 
@@ -45,21 +48,19 @@ class Landing extends Component {
                   The map data from the app comes from the <a href="https://developers.google.com/maps/" target="_blank">Google Maps API</a>.
                 </p>
               </div>
-              <div class="info">
-                <p className="lead">Ease of Use</p>
+              <div className="info">
+                <p className="lead">Welcome</p>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-                    sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                    Welcome to the Google Maps Fund App! This web application allows the user to create a fundraiser using google maps. Instead of your traditional theormeter that
+					 keeps track of your donations you will use google maps. You will insert a two locations and set an amount of money you are trying to raise. Everytime you update 
+					 your mapw with a donation, that donor name and the amount he/she donated will appear on the map as a marker. To get started just sign in with Facebook, Gmail, or
+					 make a new account.
                   </p>
               </div>
-              <div class="info">
-                <p className="lead">Extensible</p>
+              <div className="info">
+                <p className="lead">About Us</p>
                 <p>
-                  Nam doctus facilisi explicari eu. Ut sit petentium democritum, nihil habemus cum in, nam tantas referrentur ut. 
-                  Ad ridens lobortis mel, mel fugit vulputate ullamcorper ea. Ut ius vero audiam percipit, his ne platonem elaboraret. 
-                  Nec quot quas natum et, vis wisi ubique corpora an, eum mucius invenire assueverit cu.
+                 This web application was created in collaboration with Dong Yeop Lee, Peter Jeong, Justin Baldwin, and Elliot Chen for their final project in COMP 426.
                 </p>
               </div>
             </HorizontalSplit>
@@ -69,6 +70,7 @@ class Landing extends Component {
             githubUrl="https://github.com/dongy7/426">
           </Footer>
         </Page>
+		
       </App>
     )
   }
