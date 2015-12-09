@@ -14,6 +14,7 @@ export default function funds(state = [], action) {
     //   ]
     case ADD_TO_FUND:
       const fundIndex = action.fundIndex
+      const newDonation = parseInt(action.donation.amount, 10)
       const nextState = Object.assign({}, state, {
         [fundIndex]: Object.assign({}, state[fundIndex], {
           fundRaised: state[fundIndex].fundRaised + newDonation,
