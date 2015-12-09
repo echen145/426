@@ -24,11 +24,9 @@ class Landing extends Component {
           <Navbar brand={brand}>
             <NavItem><a onClick={this.showLock.bind(this)}>Sign In</a></NavItem>
           </Navbar>
-          <Hero
-            backgroundImage="https://static.pexels.com/photos/1188/city-landmark-lights-night.jpg"
-            className="text-center">
+          <Hero>
+           <div id="googlemaps"></div>
             <h1 className="display-1"> Google Maps Fund App </h1>
-            <p> App description </p>
             <p>
               <a href="https://github.com/dongy7/426" target="_blank" className="btn btn-white">
                 View on Github
