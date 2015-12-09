@@ -54,7 +54,7 @@ class Landing extends Component {
                     sunt in culpa qui officia deserunt mollit anim id est laborum. 
                   </p>
               </div>
-              <div class="info>
+              <div class="info">
                 <p className="lead">Extensible</p>
                 <p>
                   Nam doctus facilisi explicari eu. Ut sit petentium democritum, nihil habemus cum in, nam tantas referrentur ut. 
