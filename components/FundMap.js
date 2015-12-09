@@ -105,7 +105,7 @@ class FundMap extends Component {
         <div>
           <strong>{marker.title}</strong>
           <br />
-          <em>${marker.content}</em>
+          <em>{"$" + marker.content + " "}</em>
         </div>
       </InfoWindow>
     )
