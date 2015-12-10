@@ -18,10 +18,15 @@ class TextBox extends Component {
       openDialogStandardActions: false,
       errorText: 'This field is required.',
       errorText2: 'This field must be numeric',
-      startLatitudeErrText: 'This field must be a valid latitude (between -90 and 90)',
-      destLatitudeErrText: 'This field must be a valid latitude (between -90 and 90)',
-      startLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)',      
-      destLongitudeErrText: 'This field must be a valid longitude (between -180 and 180)',
+      startStreetErrText: 'This field must be a valid street',
+      destStreetErrText: 'This field must be a valid street',
+      startCityErrText: 'This field must be a valid city',
+      destCityErrText: 'This field must be a valid city',
+      startStateErrText: 'This field must be a valid state',
+      destStateErrText: 'This field must be a valid state',
+      StreetErrText: 'This field must be a valid street',
+      CityErrText: 'This field must be a valid city',
+      StateErrText: 'This field must be a valid state',
       autoHideDuration: 0,
       message: 'Fund added to your list'
     }
@@ -71,51 +76,99 @@ class TextBox extends Component {
   }
 
   _onDirectionSubmit() {
-    const startLat = this.refs.startLat.getValue()
-    const startLong = this.refs.startLong.getValue()
-    const destLat = this.refs.destLat.getValue()
-    const destLong = this.refs.destLong.getValue()
+    const startStreet = this.refs.startStreet.getValue()
+    const startCity = this.refs.startCity.getValue()
+    const startState = this.refs.startState.getValue()
+    const destStreet = this.refs.destStreet.getValue()
+    const destCity = this.refs.destCity.getValue()
+    const destState = this.refs.destState.getValue()
 
-    if(this._validateDirection(startLat, startLong, destLat, destLong)) {
-      this.props.getDirection({
-        startLat: startLat,
-        startLong: startLong,
-        destLat: destLat,
-        destLong: destLong
-      })      
-    } else {
-      this._handleStandardDialogTouchTap()
-    }
+    var startAddress = startStreet+", "+startCity+", "+startState;
+    var destAddress = destStreet+", "+destCity+", "+destState;
+
+    const that = this;
+
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode( { 'address': startAddress}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        const startLat = results[0].geometry.location.lat();
+        const startLong = results[0].geometry.location.lng();
+
+        geocoder.geocode( { 'address': destAddress}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            const destLat = results[0].geometry.location.lat();
+            const destLong = results[0].geometry.location.lng();
+
+            if(that._validateDirection(startLat, startLong, destLat, destLong)) {
+              that.props.getDirection({
+                startLat: startLat,
+                startLong: startLong,
+                destLat: destLat,
+                destLong: destLong
+              })
+            } else {
+              that._handleStandardDialogTouchTap()
+            }
+
+          }
+        });
+
+      }
+    });
   }
 
   _onFundSubmit() {
-    const startLat = this.refs.startLat.getValue()
-    const startLong = this.refs.startLong.getValue()
-    const destLat = this.refs.destLat.getValue()
-    const destLong = this.refs.destLong.getValue()
+    const startStreet = this.refs.startStreet.getValue()
+    const startCity = this.refs.startCity.getValue()
+    const startState = this.refs.startState.getValue()
+    const destStreet = this.refs.destStreet.getValue()
+    const destCity = this.refs.destCity.getValue()
+    const destState = this.refs.destState.getValue()
     const fundName = this.refs.fundName.getValue()
     const fundAmount = this.refs.fundAmount.getValue()
 
-    if(this._validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount)) {
-      const fund = {
-        map: {
-          startLat: startLat,
-          startLong: startLong,
-          destLat: destLat,
-          destLong: destLong,          
-        },
-        fundName: fundName,
-        fundAmount: fundAmount,
-        fundRaised: 0,
-        donations: []
+    var startAddress = startStreet+", "+startCity+", "+startState;
+    var destAddress = destStreet+", "+destCity+", "+destState;
+
+    const that = this;
+
+    var geocoder = new google.maps.Geocoder();
+
+    geocoder.geocode( { 'address': startAddress}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        const startLat = results[0].geometry.location.lat();
+        const startLong = results[0].geometry.location.lng();
+
+        geocoder.geocode( { 'address': destAddress}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            const destLat = results[0].geometry.location.lat();
+            const destLong = results[0].geometry.location.lng();
+
+            if(that._validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount)) {
+              const fund = {
+                map: {
+                  startLat: startLat,
+                  startLong: startLong,
+                  destLat: destLat,
+                  destLong: destLong,
+                },
+                fundName: fundName,
+                fundAmount: fundAmount,
+                fundRaised: 0,
+                donations: []
+              }
+              // this.props.addFund(fund)
+              postFund(that.props.addFund, fund, that.props.token)
+              // this.props.updatePath()
+              that.handleFundSubmit()
+            } else {
+              that._handleStandardDialogTouchTap()
+            }
+          }
+        });
       }
-      // this.props.addFund(fund)
-      postFund(this.props.addFund, fund, this.props.token)
-      // this.props.updatePath()
-      this.handleFundSubmit()
-    } else {
-      this._handleStandardDialogTouchTap()
-    }
+    });
   }
 
   _validateInput(startLat, startLong, destLat, destLong, fundName, fundAmount) {
@@ -168,37 +221,41 @@ class TextBox extends Component {
     });
   }
 
-  _handleLatitudeErrorInputChange(i, e) {
-    let value = e.target.value;
-    // console.log(value)
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value) && (value >= -90 && value <= 90);
-    if(i == 0) {
-      this.setState({
-        startLatitudeErrText: isNumeric ? '' : 'This field must be a valid latitude (between -90 and 90)',
-      });      
-    } else{
-      this.setState({
-        destLatitudeErrText: isNumeric ? '' : 'This field must be a valid latitude (between -90 and 90)',
-      });         
-    }
-
+  _handleStreetErrorInputChange(e) {
+    this.setState({
+      startStreetErrText: e.target.value ? '' : 'This field must be a valid street.',
+    })
   }
 
-  _handleLongitudeErrorInputChange(i, e) {
-    let value = e.target.value;
-    let isNumeric = !isNaN(parseFloat(value)) && isFinite(value) && (value >= -180 && value <= 180);
-    if(i == 0) {
-      this.setState({
-        startLongitudeErrText: isNumeric ? '' : 'This field must be a valid longitude (between -180 and 180)',
-      });      
-    } else {
-      this.setState({
-        destLongitudeErrText: isNumeric ? '' : 'This field must be a valid longitude (between -180 and 180)',
-      });          
-    }
-
+  _handleCityErrorInputChange(e) {
+    this.setState({
+      startCityErrText: e.target.value ? '' : 'This field must be a valid city.',
+    })
   }
 
+  _handleStateErrorInputChange(e) {
+    this.setState({
+      startStateErrText: e.target.value ? '' : 'This field must be a valid state.',
+    })
+  }
+
+  _handleStreetErrorInputChange2(e) {
+    this.setState({
+      destStreetErrText: e.target.value ? '' : 'This field must be a valid street.',
+    })
+  }
+
+  _handleCityErrorInputChange2(e) {
+    this.setState({
+      destCityErrText: e.target.value ? '' : 'This field must be a valid city.',
+    })
+  }
+
+  _handleStateErrorInputChange2(e) {
+    this.setState({
+      destStateErrText: e.target.value ? '' : 'This field must be a valid state.',
+    })
+  }
   render() {
     let styles = this.getStyles()
     let standardActions = [
@@ -223,7 +280,7 @@ class TextBox extends Component {
             floatingLabelText="Fund Name"
             errorText={this.state.errorText}
             onChange={this._handleErrorInputChange.bind(this)}
-            multiLine={true} 
+            multiLine={true}
             styles={styles.textfield}
             errorStyle={styles.errorStyle}
           />
@@ -232,63 +289,81 @@ class TextBox extends Component {
             floatingLabelText="Fund Goal Amount ($)"
             errorText={this.state.errorText2}
             onChange={this._handleNumericErrorInputChange.bind(this)}
-            multiLine={true} 
+            multiLine={true}
             styles={styles.textfield}
             errorStyle={styles.errorStyle}
           />
           <TextField
-            ref="startLat"
-            floatingLabelText="Starting Location Latitude"
-            errorText={this.state.startLatitudeErrText}
-            onChange={this._handleLatitudeErrorInputChange.bind(this, 0)}
-            multiLine={true} 
+            ref="startStreet"
+            floatingLabelText="Starting Location Street"
+            errorText={this.state.startStreetErrText}
+            onChange={this._handleStreetErrorInputChange.bind(this)}
+            multiLine={true}
             styles={styles.textfield}
             errorStyle={styles.errorStyle}
           />
           <TextField
-            ref="startLong"
-            floatingLabelText="Starting Location Longitude"
-            errorText={this.state.startLongitudeErrText}
-            onChange={this._handleLongitudeErrorInputChange.bind(this, 0)}
-            multiLine={true} 
+            ref="startCity"
+            floatingLabelText="Starting Location City"
+            errorText={this.state.startCityErrText}
+            onChange={this._handleCityErrorInputChange.bind(this)}
+            multiLine={true}
             styles={styles.textfield}
             errorStyle={styles.errorStyle}
           />
           <TextField
-            ref="destLat"
-            floatingLabelText="Destination Location Latitude"
-            errorText={this.state.destLatitudeErrText}
-            onChange={this._handleLatitudeErrorInputChange.bind(this, 1)}
-            multiLine={true} 
+            ref="startState"
+            floatingLabelText="Starting Location State"
+            errorText={this.state.startStateErrText}
+            onChange={this._handleStateErrorInputChange.bind(this)}
+            multiLine={true}
             styles={styles.textfield}
             errorStyle={styles.errorStyle}
           />
           <TextField
-            ref="destLong"
-            floatingLabelText="Destination Location Longitude"
-            errorText={this.state.destLongitudeErrText}
-            onChange={this._handleLongitudeErrorInputChange.bind(this, 1)}  
-            multiLine={true} 
+            ref="destStreet"
+            floatingLabelText="Destination Location Street"
+            errorText={this.state.destStreetErrText}
+            onChange={this._handleStreetErrorInputChange2.bind(this)}
+            multiLine={true}
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
+          />
+          <TextField
+            ref="destCity"
+            floatingLabelText="Destination Location City"
+            errorText={this.state.destCityErrText}
+            onChange={this._handleCityErrorInputChange2.bind(this)}
+            multiLine={true}
+            styles={styles.textfield}
+            errorStyle={styles.errorStyle}
+          />
+          <TextField
+            ref="destState"
+            floatingLabelText="Destination Location State"
+            errorText={this.state.destStateErrText}
+            onChange={this._handleStateErrorInputChange2.bind(this)}
+            multiLine={true}
             styles={styles.textfield}
             errorStyle={styles.errorStyle}
           />
       </ClearFix>
         <div style={styles.buttons} >
-          <RaisedButton 
-            label="Get Direction" 
-            secondary={true} 
+          <RaisedButton
+            label="Get Direction"
+            secondary={true}
             onTouchTap={this._onDirectionSubmit}
           />
-          <RaisedButton 
-            label="Add Fund" 
-            secondary={true} 
+          <RaisedButton
+            label="Add Fund"
+            secondary={true}
             onTouchTap={this._onFundSubmit}
           />
         </div>
         <Snackbar
           ref="snackbar"
           message={'Fund added to your list'}
-          action="dismiss"
+          action="undo"
           autoHideDuration={this.state.autoHideDuration}
           onActionTouchTap={this._handleAction} />
       </div>
