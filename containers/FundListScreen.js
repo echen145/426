@@ -11,6 +11,8 @@ class FundListScreen extends Component {
             this.props.updatePath('/fund/' + index)
           }
           funds={this.props.funds}
+          deleteFund={this.props.fundActions.deleteFund}
+          token={this.props.login.idToken.idToken}
         />
       </div>
     )
