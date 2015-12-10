@@ -165,12 +165,19 @@ const App = React.createClass({
 	componentWillMount() {
 		this.createLock()
 		let idToken = this.getIdToken()
+    const that = this
 		if (idToken) {
-      idToken = idToken.split(".")[0]
-      getFunds(this.props.fundActions, idToken)
-			this.props.loginActions.login({
-				idToken: idToken
-			})
+      this.lock.getProfile(idToken, function(err, profile){
+        if(err) {
+          console.log(`Error ${err}`)
+        }
+        console.log(profile)
+        const token = profile.email.replace(/\./g, '')
+        getFunds(that.props.fundActions, token)
+        that.props.loginActions.login({
+          idToken: token
+        })
+      })
 		}
 	},
 

@@ -288,7 +288,7 @@ class TextBox extends Component {
         <Snackbar
           ref="snackbar"
           message={'Fund added to your list'}
-          action="undo"
+          action="dismiss"
           autoHideDuration={this.state.autoHideDuration}
           onActionTouchTap={this._handleAction} />
       </div>

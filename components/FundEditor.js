@@ -164,7 +164,7 @@ class FundEditor extends Component {
         <Snackbar
           ref="snackbar"
           message={'Donation added to your fund'}
-          action="undo"
+          action="dismiss"
           autoHideDuration={this.state.autoHideDuration}
           onActionTouchTap={this._handleAction} />
       </div>
