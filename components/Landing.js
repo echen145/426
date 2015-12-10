@@ -9,6 +9,7 @@ import {
   Section
 } from "neal-react"
 
+
 const brandName = "426 App"
 const brand = <span>{brandName}</span>
 
@@ -24,7 +25,7 @@ class Landing extends Component {
           <Navbar brand={brand}>
           </Navbar>
           <Hero
-            backgroundImage="https://static.pexels.com/photos/1188/city-landmark-lights-night.jpg"
+            backgroundImage="https://static.pexels.com/photos/21014/pexels-photo.jpg"
             className="text-center">
             <h1 className="display-1"> Google Maps Fundraiser App </h1>
             <p> A Visual Fundtracking App </p>
@@ -39,7 +40,7 @@ class Landing extends Component {
             <HorizontalSplit padding="md">
               <div>
                 <p className="lead">Responsive</p>
-                <p>
+                <p className="text-justify">
                   This app is built using the UI library <a href="https://facebook.github.io/react/" target="_blank">React</a>, 
                   and Facebook's <a href="https://facebook.github.io/flux/" target="_blank">Flux architecture</a>. Our app also follows the design principles of 
                   Google's <a href="https://www.google.com/design/spec/material-design/introduction.html" target="_blank">Material Design</a>. 
@@ -47,20 +48,16 @@ class Landing extends Component {
                 </p>
               </div>
               <div>
-                <p className="lead">Ease of Use</p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-                    in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
-                    sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                <p className="lead">Welcome</p>
+                  <p className="text-justify">
+				  We believe that a fundraiser is a journey and should feel like one. See your movements towards your goal on an interactive Google Map and
+				  get the feeling of making the journey together with your friends and family. Much better than an Excel spreadsheet!
                   </p>
               </div>
               <div>
-                <p className="lead">Extensible</p>
-                <p>
-                  Nam doctus facilisi explicari eu. Ut sit petentium democritum, nihil habemus cum in, nam tantas referrentur ut. 
-                  Ad ridens lobortis mel, mel fugit vulputate ullamcorper ea. Ut ius vero audiam percipit, his ne platonem elaboraret. 
-                  Nec quot quas natum et, vis wisi ubique corpora an, eum mucius invenire assueverit cu.
+                <p className="lead">About Us</p>
+                <p className="text-justify">
+                  This web application was created in collaboration with Dong Yeop Lee, Peter Jeong, Justin Baldwin, and Elliot Chen for their final project in COMP 426.
                 </p>
               </div>
             </HorizontalSplit>
