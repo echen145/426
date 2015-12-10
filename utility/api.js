@@ -76,8 +76,12 @@ export function deleteFund(dispatch, token, fundId) {
     })
 }
 
-export function deleteDonation(dispatch, token, fundId, donationId) {
+export function deleteDonation(dispatch, token, fundId, donationId, fundAmount) {
   const url = `${FIREBASE}${token}/funds/${fundId}/donations/${donationId}.json`
+  const fundUrl = `${FIREBASE}${token}/funds/${fundId}.json`
+  const amount = {
+    fundRaised: fundAmount
+  }
   console.log(url)
   $.ajax({
     accept: "application/json",
@@ -88,6 +92,18 @@ export function deleteDonation(dispatch, token, fundId, donationId) {
   })
     .done(function(msg) {
       console.log(msg)
-      dispatch(donationId, fundId)
+      dispatch(donationId, fundId, fundAmount)
+    })
+
+  $.ajax({
+    accept: "application/json",
+    type: 'PATCH',
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    data: JSON.stringify(amount),
+    url: fundUrl
+  })
+    .done(function(msg) {
+      console.log(msg)
     })
 }

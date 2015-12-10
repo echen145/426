@@ -48,8 +48,15 @@ export default function funds(state = [], action) {
       return copy
       
     case DELETE_DONATION:
-      copy = Object.assign({}, state)
+      console.log(action.amount)
+      copy = Object.assign({}, state, {
+        [action.fundIndex]: Object.assign({}, state[action.fundIndex], {
+          fundRaised: action.amount
+        })
+      })
+      console.log(copy)
       delete copy[action.fundIndex]['donations'][action.index]
+      console.log(copy)
       return copy
 
     default:

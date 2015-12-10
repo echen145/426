@@ -15,6 +15,7 @@ class FundScreen extends Component {
     const map = fund.map
     const { addToFund, deleteDonation } = this.props.fundActions
     const donations = fund.donations
+    const fundAmount = fund.fundRaised
     return (
       <Tabs>
         <Tab label="Summary" >
@@ -24,6 +25,7 @@ class FundScreen extends Component {
           <DonationHistory 
             donations={donations}
             fundId={hashId}
+            fundAmount={fundAmount}
             deleteDonation={deleteDonation}
             token={this.props.login.idToken.idToken}
           />

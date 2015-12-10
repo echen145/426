@@ -35,10 +35,11 @@ export function deleteFund(index) {
   }
 }
 
-export function deleteDonation(index, fundIndex) {
+export function deleteDonation(index, fundIndex, amount) {
   return {
     type: 'DELETE_DONATION',
     index,
-    fundIndex
+    fundIndex, 
+    amount
   }
 }

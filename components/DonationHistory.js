@@ -10,7 +10,9 @@ class DonationHistory extends Component {
     console.log(index)
     console.log(fundId)
     console.log(donationId)
-    deleteDonation(this.props.deleteDonation, this.props.token, fundId, donationId)
+    const fundAmount = this.props.fundAmount - parseInt(this.props.donations[donationId].amount, 10)
+    console.log(fundAmount)
+    deleteDonation(this.props.deleteDonation, this.props.token, fundId, donationId, fundAmount)
   }
 
   render() {
