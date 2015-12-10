@@ -1,9 +1,10 @@
 import React, { PropTypes, Component } from 'react'
 import { List, ListDivider, ListItem, IconButton, IconMenu, Styles } from 'material-ui'
-const {Colors} = Styles;
-const MoreVertIcon = require('material-ui/lib/svg-icons/navigation/more-vert');
-const MenuItem = require('material-ui/lib/menus/menu-item')
+import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert'
+import MenuItem from 'material-ui/lib/menus/menu-item'
 import {deleteDonation} from '../utility/api'
+
+const {Colors} = Styles
 
 class DonationHistory extends Component {
   handleClick(index, fundId, donationId) {

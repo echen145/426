@@ -1,9 +1,10 @@
 import { List, ListDivider, ListItem, IconButton, IconMenu, Styles } from 'material-ui'
 import React, {Component, PropTypes} from 'react'
-const {Colors} = Styles;
-const MoreVertIcon = require('material-ui/lib/svg-icons/navigation/more-vert');
-const MenuItem = require('material-ui/lib/menus/menu-item')
+import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert'
+import MenuItem from 'material-ui/lib/menus/menu-item'
 import {deleteFund} from '../utility/api'
+
+const {Colors} = Styles
 
 class FundList extends Component {
   constructor() {
