@@ -55,7 +55,7 @@ class NavBar extends Component {
 		return (
 			<div className="nav">
 				<AppBar
-					title="App"
+					title="Fund App"
 					iconClassNameRight="muidocs-icon-navigation-expand-more" 
 					onLeftIconButtonTouchTap={this._toggleNav} 
           iconElementRight={button}

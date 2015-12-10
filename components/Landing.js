@@ -4,7 +4,7 @@ import {
   Footer,
   Hero,
   HorizontalSplit,
-  Navbar, NavItem,
+  Navbar,
   Page,
   Section
 } from "neal-react"
@@ -22,16 +22,15 @@ class Landing extends Component {
       <App>
         <Page>
           <Navbar brand={brand}>
-            <NavItem><a onClick={this.showLock.bind(this)}>Sign In</a></NavItem>
           </Navbar>
           <Hero
             backgroundImage="https://static.pexels.com/photos/1188/city-landmark-lights-night.jpg"
             className="text-center">
-            <h1 className="display-1"> Google Maps Fund App </h1>
-            <p> App description </p>
+            <h1 className="display-1"> Google Maps Fundraiser App </h1>
+            <p> A Visual Fundtracking App </p>
             <p>
-              <a href="https://github.com/dongy7/426" target="_blank" className="btn btn-white">
-                View on Github
+              <a onClick={this.showLock.bind(this)} className="btn btn-white">
+                Get Started
               </a>
             </p>
           </Hero>
