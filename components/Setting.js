@@ -1,23 +1,9 @@
 import React, {Component} from 'react'
-import { SelectField, Toggle } from 'material-ui'
-
-const arbitraryArrayMenuItems = [
-  {id:1, name:'Option 1'},
-  {id:2, name:'Option 2'},
-  {id:3, name:'Option 3'},
-  {id:4, name:'Option 4'},
-  {id:5, name:'Option 5'},
-]
-
+import { Toggle } from 'material-ui'
 
 class Setting extends Component {
   constructor() {
     super()
-    this.state = {
-      selectValue1: 1,
-      selectValue2: 1,
-      selectValue3: 1,
-    }
   }
 
   getStyles() {
@@ -39,12 +25,6 @@ class Setting extends Component {
     };
   }  
 
-  _handleSelectValueChange(name, e) {
-    const change = {}
-    change[name] = e.target.value
-    this.setState(change);
-  }
-
   _handleThemeToggle() {
     this.props.settingsActions.toggleTheme(this.props.settings.isLight) 
   }
@@ -60,24 +40,6 @@ class Setting extends Component {
             label="Theme" 
             onToggle={this._handleThemeToggle.bind(this)} />
         </div>
-        <SelectField
-          floatingLabelText="Setting 2"
-          style={styles.textfield}
-          value={this.state.selectValue2}
-          valueMember="id"
-          displayMember="name"
-          onChange={this._handleSelectValueChange.bind(this, 'selectValue2')}
-          menuItems={arbitraryArrayMenuItems} />
-        <br/>
-        <SelectField
-          floatingLabelText="Setting 3"
-          style={styles.textfield}
-          value={this.state.selectValue3}
-          valueMember="id"
-          displayMember="name"
-          onChange={this._handleSelectValueChange.bind(this, 'selectValue3')}
-          menuItems={arbitraryArrayMenuItems} />
-        <br/>
       </div>
     )
   }
