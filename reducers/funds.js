@@ -1,7 +1,8 @@
-import { ADD_FUND, ADD_TO_FUND, INITIALIZE_FUNDS, DELETE_FUND } from '../actions/funds'
+import { ADD_FUND, ADD_TO_FUND, INITIALIZE_FUNDS, DELETE_FUND, DELETE_DONATION } from '../actions/funds'
 
 export default function funds(state = [], action) {
   // console.log(state)
+  let copy = null
   switch (action.type) {
     case ADD_FUND: 
       return  Object.assign({}, state, {
@@ -42,10 +43,15 @@ export default function funds(state = [], action) {
 
     case DELETE_FUND:
       const index = action.index
-      const copy =  Object.assign({}, state)
+      copy =  Object.assign({}, state)
       delete copy[index]
       return copy
       
+    case DELETE_DONATION:
+      copy = Object.assign({}, state)
+      delete copy[action.fundIndex]['donations'][action.index]
+      return copy
+
     default:
       return state
   }

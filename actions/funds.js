@@ -2,6 +2,7 @@ export const ADD_FUND = 'ADD_FUND'
 export const ADD_TO_FUND = 'ADD_TO_FUND'
 export const INITIALIZE_FUNDS = "INITIALIZE_FUNDS"
 export const DELETE_FUND = 'DELETE_FUND'
+export const DELETE_DONATION = 'DELETE_DONATION'
 
 export function addFund(index, fund) {
   return {
@@ -31,5 +32,13 @@ export function deleteFund(index) {
   return {
     type: 'DELETE_FUND',
     index
+  }
+}
+
+export function deleteDonation(index, fundIndex) {
+  return {
+    type: 'DELETE_DONATION',
+    index,
+    fundIndex
   }
 }
