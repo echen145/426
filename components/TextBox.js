@@ -353,6 +353,9 @@ class TextBox extends Component {
             label="Get Direction"
             secondary={true}
             onTouchTap={this._onDirectionSubmit}
+            style={{
+              marginRight: 10
+            }}
           />
           <RaisedButton
             label="Add Fund"
