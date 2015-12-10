@@ -75,6 +75,7 @@ class FundMap extends Component {
     let markers = []
     Object.keys(donations).map((donation, index) => {
       percent = percent + (donations[donation].amount)/total    
+      percent = (percent > 1) ? 1 : percent
       latlng = polyline.GetPointAtDistance(polyline.Distance()*percent)
       markers.push({
         pos: latlng,
